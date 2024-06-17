@@ -945,8 +945,7 @@ function displayLists(insurance) {
         "Management Liability": ["Crime", "Directors & Officers (D&O)", "Fiduciary"],
         "Media": ["Advertising Agency", "Artist", "Author", "Blogger / Vlogger", "Broadcaster", "Communication Consultants", "Digital Marketing", "Event organisers", "Film and TV Distributor", "Film and TV Production", "Magazine, Book, Newspaper Publishers", "Marketing", "Marketing and PR Companies", "Marketing Consultants", "Multimedia Companies", "Music Producers / Publishers / Composers / Songwriters", "New Media / digital agencies", "Photographers", "PR Consultants", "Press agencies", "Producers (TV, Film, Commercials)", "Public Relations", "Radio Stations", "Social Media Agencies"],
         "Professions": ["Agricultural consultants", "Business consultants", "Captives", "Civil Engineers", "Commercial lines insurance", "Conservation managers", "Construction", "Conveyancers", "Data processors", "Directional drillers", "Drilling consultants", "Driving / Haulage", "Education", "Electrical Engineers", "Engineering and technical", "Environmental Engineers", "Environmental consultants", "Estate agents (residential and commercial)", "Expert witnesses", "Feasibility studies", "Financial services", "Fire consultants", "Food consultants", "Foreclosure agents", "Geologists", "Geotechnical engineers", "Health and safety consultants", "Hospitality", "HR consultants", "HVAC engineers", "Hydraulic / fire engineers", "Interim Management", "Interior designers", "Investigators", "IT / Telecommunications", "Land brokers", "Land surveyors", "Landscape architects", "Management consultants", "Mechanical engineers", "Other professional services", "Personal lines", "Project managers", "Property developers", "Property leasing firms", "Property management companies", "Property management firms", "Property surveyors", "Quality assurance consultants", "Quarterly surveyors", "Recruitment", "Risk retention groups", "Staffing", "Structural architects / engineers / surveyors", "Town planning engineers", "Training companies"],
-        "Tech": ["App developers", "Application service providers", "Bespoke software developers", "Business networking websites", "Computer games developers", "Corporate blogs", "Digital Marketing agencies", "Domain name registration (resellers)", "Educational games", "Email providers", "Encryption software providers", "Genealogy websites", "Hardware value added resellers", "Instant messaging applications", "Internet radio websites", "IT consultancy", "IT security consultants", "IT support and training", "Mobile content providers", "Mobile phone content developers", "Networking engineers", "Online dating agencies", "Online gaming providers", "Online games developers and publishers", "Online listings sites", "Packaged software developers", "Photo sharing websites", "Social networking websites", "Software value added resellers", "System integrators", "User-generated content sites", "Video sharing websites", "Web designers", "Web hosting (Reselling)", "Web-based communities", "Web-casters", "Web service providers"],
-        "Life Sciences": ["Animal Products", "Bio", "Biotics", "Blood bank", "Cannabis", "CBD", "Clinical Trials", "Drugs", "Hemp", "Laboratories", "Medical Devices (MD)", "Nutra", "Pain Relief", "Patients", "Research and Development (R&D)", "Research Trials", "Stem cell bank", "Supplements (food, dietary)", "Therapeutic devices", "Vitamins"]
+        "Tech": ["App developers", "Application service providers", "Bespoke software developers", "Business networking websites", "Computer games developers", "Corporate blogs", "Digital Marketing agencies", "Domain name registration (resellers)", "Educational games", "Email providers", "Encryption software providers", "Genealogy websites", "Hardware value added resellers", "Instant messaging applications", "Internet radio websites", "IT consultancy", "IT security consultants", "IT support and training", "Mobile content providers", "Mobile phone content developers", "Networking engineers", "Online dating agencies", "Online gaming providers", "Online games developers and publishers", "Online listings sites", "Packaged software developers", "Photo sharing websites", "Social networking websites", "Software value added resellers", "System integrators", "User-generated content sites", "Video sharing websites", "Web designers", "Web hosting (Reselling)", "Web-based communities", "Web-casters", "Web service providers"]
     };
 
     const avoidIndicators = {
@@ -959,7 +958,7 @@ function displayLists(insurance) {
     const avoidList = document.getElementById('avoidList');
 
     // Display keywords
-    keywordList.innerHTML = `<h3>${insurance} Keywords</h3><ul>` + (keywords[insurance] || []).map(keyword => `<li>${keyword}</li>`).join('') + `</ul>`;
+    keywordList.innerHTML = `<h3>${insurance} Keywords</h3><ul>` + (keywords[insurance] || avoidIndicators["Life Sciences"]).map(keyword => `<li>${keyword}</li>`).join('') + `</ul>`;
 
     // Display avoid indicators only if applicable
     if (insurance !== "Healthcare" && avoidIndicators[insurance] && avoidIndicators[insurance].length > 0) {
@@ -979,54 +978,44 @@ function displayLists(insurance) {
     }
 }
 
-// Policy number check function
-function checkPolicyNumber(policyNumber) {
-    const policyResultBox = document.getElementById('policyResultBox');
-    policyResultBox.style.color = '';
-
-    if (policyNumber.startsWith('GL')) {
-        policyResultBox.textContent = 'Property and Casualty';
-    } else if (policyNumber.startsWith('CM')) {
-        policyResultBox.textContent = 'Crisis Management / Product Recall';
-    } else if (policyNumber.startsWith('ES')) {
-        policyResultBox.textContent = 'Cyber';
-    } else if (policyNumber.startsWith('FI')) {
-        policyResultBox.textContent = 'Financial Institutions';
-    } else if (policyNumber.startsWith('MS')) {
-        policyResultBox.textContent = 'Healthcare';
-    } else if (policyNumber.startsWith('IS')) {
-        policyResultBox.textContent = 'Intellectual Property';
-    } else if (policyNumber.startsWith('KR') || policyNumber.startsWith('MKR')) {
-        policyResultBox.textContent = 'Kidnap & Ransom';
-    } else if (policyNumber.startsWith('BS')) {
-        policyResultBox.textContent = 'Life Science';
-    } else if (policyNumber.startsWith('DO')) {
-        policyResultBox.textContent = 'Management Liability';
-    } else if (policyNumber.startsWith('TP')) {
-        policyResultBox.textContent = 'Transactional Liability';
-    } else if (policyNumber.startsWith('CFTPM')) {
-        policyResultBox.textContent = 'Terrorism';
-    } else if (policyNumber.startsWith('FI')) {
-        policyResultBox.textContent = 'FinTech';
-    }
-
-    if (policyNumber.charAt(2) === 'J') {
-        policyResultBox.textContent = 'EXPIRED POLICY';
-        policyResultBox.style.color = 'red';
-    }
-
-    // Clear the result if input doesn't match any criteria
-    if (policyNumber === '' || policyNumber.length < 2 || !policyNumber.match(/^([A-Z]{2,5})/)) {
-        policyResultBox.textContent = '';
-    }
-}
-
-document.getElementById('checkPolicyButton').addEventListener('click', function() {
-    const policyNumber = document.getElementById('policyNumberBox').value.trim();
-    checkPolicyNumber(policyNumber);
-});
-
+// Add event listener for policy number input
 document.getElementById('policyNumberBox').addEventListener('input', function() {
-    const policyNumber = this.value.trim();
-    checkPolicyNumber(policyNumber);
+    const input = this.value.trim().toUpperCase();
+    const resultBox = document.getElementById('policyResultBox');
+    let result = '';
+
+    if (input.startsWith('GL')) {
+        result = 'Property and Casualty';
+    } else if (input.startsWith('CM')) {
+        result = 'Crisis Management / Product Recall';
+    } else if (input.startsWith('ES')) {
+        result = 'Tech/ Cyber';
+    } else if (input.startsWith('FI')) {
+        result = 'Financial Institutions';
+    } else if (input.startsWith('MS')) {
+        result = 'Healthcare';
+    } else if (input.startsWith('IS')) {
+        result = 'Intellectual Property';
+    } else if (input.startsWith('KR') || input.startsWith('MKR')) {
+        result = 'Kidnap & Ransom';
+    } else if (input.startsWith('BS')) {
+        result = 'Life Science';
+    } else if (input.startsWith('DO')) {
+        result = 'Management Liability';
+    } else if (input.startsWith('TP')) {
+        result = 'Transactional Liability';
+    } else if (input.startsWith('CFTPM')) {
+        result = 'Terrorism';
+    } else if (input.startsWith('FI')) {
+        result = 'FinTech';
+    }
+
+    if (input.length >= 3 && input[2] === 'J') {
+        result = 'EXPIRED POLICY';
+        resultBox.style.color = 'red';
+    } else {
+        resultBox.style.color = 'black';
+    }
+
+    resultBox.textContent = result;
 });
