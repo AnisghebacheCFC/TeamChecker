@@ -613,7 +613,6 @@ const professions = [
     { name: "Tunnel Construction", insurance: "Property and Casualty" },
 ];
 
-
 console.log(professions);
 
 // Function to find the best match for the user input using Fuse.js
@@ -715,6 +714,4 @@ function displayLists(insurance) {
         const alternative = insurance === "Healthcare" ? "Life Sciences" : "Healthcare";
         avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting ${alternative.toUpperCase()}</h3><ul>` + avoidIndicators[alternative].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
     }
-}
-
 }
