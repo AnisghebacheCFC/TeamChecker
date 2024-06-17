@@ -42,6 +42,12 @@ input[type="text"] {
     border-radius: 4px;
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
 button {
     background-color: #01416d;
     color: #fff;
@@ -55,8 +61,18 @@ button:hover {
     background-color: #012d4a;
 }
 
-#resultBox, #keywordsList, #avoidList {
+#resultBox {
     margin-top: 20px;
+}
+
+.lists-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.list {
+    width: 45%;
 }
 
 #keywordsList ul, #avoidList ul {
