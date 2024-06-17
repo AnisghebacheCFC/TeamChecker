@@ -89,7 +89,7 @@ button:hover {
 
 #policyResultBox {
     margin-top: 10px;
-    display: flex;
+    display: none; /* Initially hidden */
     justify-content: center;
     align-items: center;
     width: 100%;
