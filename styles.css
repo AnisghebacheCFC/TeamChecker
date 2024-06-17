@@ -20,7 +20,7 @@ body {
     max-height: 50px;
 }
 
-.container, .policy-container, .suggestion-container {
+.container, .policy-container {
     max-width: 800px;
     width: 100%;
     background-color: #fff;
@@ -98,10 +98,6 @@ button:hover {
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-weight: bold;
-}
-
-.suggestion-container {
-    margin-top: auto;
 }
 
 #suggestions {
