@@ -1,79 +1,110 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat Light', sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    background-color: #01416d;
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    max-height: 50px;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    color: #01416d;
     text-align: center;
 }
 
-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 1em;
+input[type="text"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-header .logo {
-    display: block;
-    margin: 0 auto;
-    width: 100px;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2em;
-}
-
-.search-container {
-    margin: 2em 0;
-}
-
-.search-container input[type="text"] {
-    width: 300px;
-    padding: 0.5em;
-    font-size: 1em;
-}
-
-.search-container button {
-    padding: 0.5em 1em;
-    font-size: 1em;
-    margin-left: 0.5em;
+button {
+    background-color: #01416d;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
 }
 
-.suggestions-container {
-    margin: 1em 0;
+button:hover {
+    background-color: #012d4a;
 }
 
-.results-container {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 2em;
-    padding: 1em;
-    border-top: 1px solid #ccc;
+#resultBox, #keywordsList, #avoidList {
+    margin-top: 20px;
 }
 
-.results-container div {
-    flex: 1;
-    margin: 0 1em;
-    text-align: left;
+#keywordsList ul, #avoidList ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-.suggest-activity {
-    margin: 3em 0;
+#keywordsList h3, #avoidList h3 {
+    font-weight: bold;
+    color: #01416d;
 }
 
-.suggest-activity h2 {
-    margin-bottom: 1em;
+#avoidList h3 {
+    color: red;
 }
 
-.suggest-activity input[type="text"] {
-    width: 300px;
-    padding: 0.5em;
-    font-size: 1em;
+#keywordsList li, #avoidList li {
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.suggest-activity button {
-    padding: 0.5em 1em;
-    font-size: 1em;
-    margin-left: 0.5em;
+.suggest-activity-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.suggest-activity-container h2 {
+    color: #01416d;
+}
+
+.suggest-activity-container input[type="text"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.suggest-activity-container button {
+    background-color: #01416d;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
+}
+
+.suggest-activity-container button:hover {
+    background-color: #012d4a;
 }
