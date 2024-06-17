@@ -2,16 +2,16 @@ const professions = [
     { name: "Oncologist", insurance: "Healthcare" },
     { name: "Software Developer", insurance: "Tech" },
     { name: "Financial Analyst", insurance: "FinTech" },
-    { name: "IT Security Specialist", insurance: "Cyber" },
-    { name: "Data Analyst", insurance: "Cyber" },
-    { name: "Network Administrator", insurance: "Cyber" },
-    { name: "System Administrator", insurance: "Cyber" },
-    { name: "Web Developer", insurance: "Cyber" },
-    { name: "Cybersecurity Consultant", insurance: "Cyber" },
-    { name: "Information Security Officer", insurance: "Cyber" },
-    { name: "Ethical Hacker", insurance: "Cyber" },
-    { name: "Data Privacy Officer", insurance: "Cyber" },
-    { name: "IT Auditor", insurance: "Cyber" },
+    { name: "IT Security Specialist", insurance: "Tech" },
+    { name: "Data Analyst", insurance: "Tech" },
+    { name: "Network Administrator", insurance: "Tech" },
+    { name: "System Administrator", insurance: "Tech" },
+    { name: "Web Developer", insurance: "Tech" },
+    { name: "Cybersecurity Consultant", insurance: "Tech" },
+    { name: "Information Security Officer", insurance: "Tech" },
+    { name: "Ethical Hacker", insurance: "Tech" },
+    { name: "Data Privacy Officer", insurance: "Tech" },
+    { name: "IT Auditor", insurance: "Tech" },
     { name: "Banker", insurance: "Financial Institutions" },
     { name: "Investment Advisor", insurance: "Financial Institutions" },
     { name: "Loan Officer", insurance: "Financial Institutions" },
@@ -144,60 +144,385 @@ const professions = [
     { name: "Geriatrician", insurance: "Healthcare" }
 ];
 
+const keywordsData = {
+    "Property & Casualty": {
+        keywords: [
+            "Building",
+            "Combined liability",
+            "Commercial combined",
+            "Commercial Property",
+            "Construction",
+            "Environmental Impairment Liability (EIL)",
+            "Location",
+            "Office and retail premises",
+            "Property",
+            "Property managers / owners (commercial and residential)",
+            "Residential Dwelling",
+            "Specialist contractors (electrical, flooring, shop fitters)",
+            "Tourist attractions",
+            "Amusement arcades",
+            "Construction projects",
+            "General contractor",
+            "Nightclubs and bars",
+            "Standalone property cover"
+        ],
+        avoid: [
+            "Animal Products",
+            "Bio",
+            "Biotics",
+            "Blood bank",
+            "Cannabis",
+            "CBD",
+            "Clinical Trials",
+            "Drugs",
+            "Hemp",
+            "Laboratories",
+            "Medical Devices (MD)",
+            "Natural Health Products",
+            "Nutra",
+            "Nutraceuticals",
+            "Pain relief",
+            "Patients",
+            "Pharmaceuticals",
+            "Research & Development (R&D)",
+            "Research Trials",
+            "Stem cell bank",
+            "Supplements",
+            "Therapeutic devices",
+            "Vitamins"
+        ]
+    },
+    "Product Recall": {
+        keywords: [
+            "Ancillary product recall costs",
+            "Contamination",
+            "Product recall"
+        ]
+    },
+    "Financial Institutions": {
+        keywords: [
+            "Asset Management",
+            "Bank",
+            "Capital",
+            "Credit Union",
+            "Financial Advisors",
+            "Financial Corporation",
+            "Financial Services",
+            "Fund",
+            "Insurance Company",
+            "Lending",
+            "Mortgage",
+            "Non-bank lenders",
+            "Introductory services",
+            "M&A advisors",
+            "Brokers services",
+            "Pay day lenders"
+        ]
+    },
+    "Healthcare": {
+        keywords: [
+            "Acupuncture",
+            "Audiologists",
+            "Beauticians/ Beauty salons",
+            "Chiropractors",
+            "Clinics",
+            "Dieticians",
+            "Drug Distribution",
+            "ePharmacy",
+            "Facial",
+            "General Practice",
+            "Gyms",
+            "Health Screening",
+            "Healthcare Consultants",
+            "Home Healthcare",
+            "Hospices",
+            "Massage",
+            "Medical",
+            "Medical Practitioners",
+            "Medical Schools",
+            "Medical Staffing",
+            "Medical Testing Labs",
+            "Nails",
+            "Nursing",
+            "Nursing homes",
+            "Nutritional Consulting",
+            "Ophthalmology",
+            "Opticians",
+            "Pharmacy",
+            "Pharmacists",
+            "Phlebotomists",
+            "Podiatry",
+            "Psychologists",
+            "Rehab Units",
+            "Remote Patient Monitoring",
+            "Speech Therapy",
+            "Sports Injury",
+            "STI Clinics and Health Centres",
+            "Tanning",
+            "Telemedicine",
+            "Vets",
+            "Wellness",
+            "Anaesthetist",
+            "Cardiologist",
+            "Cardiothorcic Surgeon",
+            "Dermatologist",
+            "Endocrinologist",
+            "Gastroenterologist",
+            "Gynaecologist",
+            "Maxillofacial Surgeon",
+            "Neaurologist",
+            "Oncologist",
+            "Ophthalmologist",
+            "Orthopaedic Surgeon",
+            "Otolaryngologist",
+            "Plastic Surgeon",
+            "Psychiatrist",
+            "Radiologist",
+            "Rheumatologist",
+            "Urologist",
+            "Vascular Surgeon"
+        ],
+        avoid: [
+            "Clinics",
+            "Dieticians",
+            "Drug Distribution",
+            "ePharmacy",
+            "Facial",
+            "General Practice",
+            "Health Screening",
+            "Pharmacy",
+            "Pharmacists",
+            "Phlebotomists",
+            "Psychologists",
+            "Rehab Units",
+            "Speech Therapy",
+            "Wellness"
+        ]
+    },
+    "Life Sciences": {
+        keywords: [
+            "Animal Products",
+            "Bio",
+            "Biotics",
+            "Blood bank",
+            "Cannabis",
+            "CBD",
+            "Clinical Trials",
+            "Drugs",
+            "Hemp",
+            "Laboratories",
+            "Medical Devices (MD)",
+            "Nutra",
+            "Pain Relief",
+            "Patients",
+            "Research and Development (R&D)",
+            "Research Trials",
+            "Stem cell bank",
+            "Supplements (food, dietary)",
+            "Therapeutic devices",
+            "Vitamins"
+        ],
+        avoid: [
+            "Animal Products",
+            "Bio",
+            "Biotics",
+            "Blood bank",
+            "Cannabis",
+            "CBD",
+            "Clinical Trials",
+            "Drugs",
+            "Hemp",
+            "Laboratories",
+            "Medical Devices (MD)",
+            "Nutra",
+            "Pain Relief",
+            "Patients",
+            "Research and Development (R&D)",
+            "Research Trials",
+            "Stem cell bank",
+            "Supplements (food, dietary)",
+            "Therapeutic devices",
+            "Vitamins"
+        ]
+    },
+    "Management Liability": {
+        keywords: [
+            "Crime",
+            "Directors & Officers (D&O)",
+            "Fiduciary"
+        ]
+    },
+    "Media": {
+        keywords: [
+            "Advertising Agency",
+            "Artist",
+            "Author",
+            "Blogger / Vlogger",
+            "Broadcaster",
+            "Communication Consultants",
+            "Digital Marketing",
+            "Event organisers",
+            "Film and TV Distributor",
+            "Film and TV Production",
+            "Magazine, Book, Newspaper Publishers",
+            "Marketing",
+            "Marketing and PR Companies",
+            "Marketing Consultants",
+            "Multimedia Companies",
+            "Music Producers / Publishers / Composers / Songwriters",
+            "New Media / digital agencies",
+            "Photographers",
+            "PR Consultants",
+            "Press agencies",
+            "Producers (TV, Film, Commercials)",
+            "Public Relations",
+            "Radio Stations",
+            "Social Media Agencies"
+        ]
+    },
+    "Professions": {
+        keywords: [
+            "Agricultural consultants",
+            "Business consultants",
+            "Captives",
+            "Civil Engineers",
+            "Commercial lines insurance",
+            "Conservation managers",
+            "Construction",
+            "Conveyancers",
+            "Data processors",
+            "Directional drillers",
+            "Drilling consultants",
+            "Driving / Haulage",
+            "Education",
+            "Electrical Engineers",
+            "Engineering and technical",
+            "Environmental Engineers",
+            "Environmnetal consultants",
+            "Estate agents (residential and commercial)",
+            "Expert witnesses",
+            "Feasibility studies",
+            "Financial services",
+            "Fire consultants",
+            "Food consultants",
+            "Foreclosure agents",
+            "Geologists",
+            "Geotechnical engineers",
+            "Health and safelty consultants",
+            "Hospitality",
+            "HR consultants",
+            "HVAC engineers",
+            "Hydraulic / fire engineers",
+            "Interim Management",
+            "Interior designers",
+            "Investigators",
+            "IT / Telecommunications",
+            "Land brokers",
+            "Land surveyors",
+            "Landscape architects",
+            "Management consultants",
+            "Mechanical engineers",
+            "Other professional services",
+            "Personal lines",
+            "Project managers",
+            "Property developers",
+            "Property leasing firms",
+            "Property management companies",
+            "Property management firms",
+            "Property surveyors",
+            "Quality assurance consultants",
+            "Quarterly surveyors",
+            "Recruitment",
+            "Risk retention groups",
+            "Staffing",
+            "Structural architects / engineers / surveyors",
+            "Town planning engineers",
+            "Training companies"
+        ]
+    },
+    "Tech": {
+        keywords: [
+            "App developers",
+            "Application service providers",
+            "Bespoke software developers",
+            "Business networking websites",
+            "Computer games developers",
+            "Corporate blogs",
+            "Digital Marketing agencies",
+            "Domain name registration (resellers)",
+            "Educational games",
+            "Email providers",
+            "Encryption software providers",
+            "Genealogy websites",
+            "Hardware value added resellers",
+            "Instant messaging applications",
+            "Internet radio websites",
+            "IT consultancy",
+            "IT security consultants",
+            "IT support and training",
+            "Mobile content providers",
+            "Mobile phone content developers",
+            "Networking engineers",
+            "Online dating agencies",
+            "Online gaming providers",
+            "Online games developers and publishers",
+            "Online listings sites",
+            "Packaged software developers",
+            "Photo sharing websites",
+            "Social networking websites",
+            "Software value added resellers",
+            "System integrators",
+            "User-generated content sites",
+            "Video sharing websites",
+            "Web designers",
+            "Web hosting (Reselling)",
+            "Web-based communities",
+            "Web-casters",
+            "Web service providers"
+        ]
+    },
+    "FinTech": {
+        keywords: [
+            "Digital & mobile banking services",
+            "Digital lending",
+            "Investment platforms",
+            "Money transfer / payment services"
+        ]
+    }
+};
+
 function searchProfession() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
     const resultDiv = document.getElementById('result');
+    const keywordsDiv = document.getElementById('keywords');
+    const avoidDiv = document.getElementById('avoid');
 
-    const closestMatch = professions.reduce((prev, curr) => {
-        const prevSimilarity = similarity(prev.name.toLowerCase(), input);
-        const currSimilarity = similarity(curr.name.toLowerCase(), input);
-        return currSimilarity > prevSimilarity ? curr : prev;
-    });
+    resultDiv.innerHTML = '';
+    keywordsDiv.innerHTML = '';
+    avoidDiv.innerHTML = '';
 
-    const similarityScore = similarity(closestMatch.name.toLowerCase(), input);
-    
-    if (similarityScore > 0.3) {  // Adjust the threshold as needed
-        resultDiv.textContent = `Profession: ${closestMatch.name}, Insurance Type: ${closestMatch.insurance}`;
-    } else {
-        resultDiv.textContent = "Profession not found";
-    }
-}
+    const profession = professions.find(profession =>
+        profession.name.toLowerCase() === searchInput
+    );
 
-function similarity(s1, s2) {
-    let longer = s1;
-    let shorter = s2;
-    if (s1.length < s2.length) {
-        longer = s2;
-        shorter = s1;
-    }
-    const longerLength = longer.length;
-    if (longerLength === 0) {
-        return 1.0;
-    }
-    return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
-}
+    if (profession) {
+        resultDiv.innerHTML = `The likely insurance type for a ${profession.name} is ${profession.insurance}.`;
+        const insuranceType = profession.insurance;
 
-function editDistance(s1, s2) {
-    const costs = [];
-    for (let i = 0; i <= s1.length; i++) {
-        let lastValue = i;
-        for (let j = 0; j <= s2.length; j++) {
-            if (i === 0) {
-                costs[j] = j;
-            } else {
-                if (j > 0) {
-                    let newValue = costs[j - 1];
-                    if (s1.charAt(i - 1) !== s2.charAt(j - 1)) {
-                        newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
-                    }
-                    costs[j - 1] = lastValue;
-                    lastValue = newValue;
-                }
+        if (keywordsData[insuranceType]) {
+            if (keywordsData[insuranceType].keywords) {
+                keywordsDiv.innerHTML = `<h2>${insuranceType.toUpperCase()} Keywords</h2><ul>` + 
+                    keywordsData[insuranceType].keywords.map(keyword => `<li>${keyword}</li>`).join('') + 
+                    `</ul>`;
+            }
+
+            if (keywordsData[insuranceType].avoid) {
+                avoidDiv.innerHTML = `<h2>Indicators to AVOID, consider selecting ${insuranceType.toUpperCase()}</h2><ul>` + 
+                    keywordsData[insuranceType].avoid.map(keyword => `<li>${keyword}</li>`).join('') + 
+                    `</ul>`;
             }
         }
-        if (i > 0) {
-            costs[s2.length] = lastValue;
-        }
+    } else {
+        resultDiv.innerHTML = 'Profession not found. Please check your input and try again.';
     }
-    return costs[s2.length];
 }
