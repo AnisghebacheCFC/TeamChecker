@@ -862,6 +862,7 @@ const professions = [
 ];
 
 
+
 console.log(professions);
 
 // Function to find the best match for the user input using Fuse.js
