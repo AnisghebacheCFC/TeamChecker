@@ -97,6 +97,7 @@ button:hover {
 #keywordsList h3, #avoidList h3 {
     font-weight: bold;
     color: #01416d;
+    text-align: left;
 }
 
 #avoidList h3 {
@@ -110,7 +111,7 @@ button:hover {
 
 .lists-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     text-align: left;
     width: 100%;
 }
@@ -131,4 +132,12 @@ button:hover {
 
 .policy-container button {
     margin-top: 10px;
+}
+
+.suggestions-box {
+    border: 1px solid #ddd;
+    max-height: 100px;
+    overflow-y: auto;
+    width: calc(100% - 22px);
+    text-align: left;
 }
