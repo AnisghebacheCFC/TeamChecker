@@ -35,7 +35,7 @@ body {
 
 .policy-container {
     background-color: #149bd7;
-    margin-top: 40px; /* Lower the container */
+    margin-top: 60px; /* Lower the container */
 }
 
 h1 {
@@ -70,12 +70,12 @@ button:hover {
 #keywordsList ul, #avoidList ul {
     list-style-type: none;
     padding: 0;
+    text-align: left;
 }
 
 #keywordsList h3, #avoidList h3 {
     font-weight: bold;
     color: #01416d;
-    text-align: left; /* Left justify the headers */
 }
 
 #avoidList h3 {
@@ -85,7 +85,6 @@ button:hover {
 #keywordsList li, #avoidList li {
     font-weight: bold;
     margin-bottom: 5px;
-    text-align: left; /* Left justify the list items */
 }
 
 #policyResultBox {
@@ -94,10 +93,10 @@ button:hover {
     justify-content: center;
     align-items: center;
     width: 100%;
-}
-
-#policyResultBox button {
-    width: 100%;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-weight: bold;
 }
 
@@ -107,4 +106,5 @@ button:hover {
 
 #suggestions {
     width: calc(100% - 22px); /* Match the width of the search box */
+    text-align: left;
 }
