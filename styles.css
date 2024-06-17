@@ -1,66 +1,49 @@
 body {
     font-family: 'Montserrat Light', sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-header {
-    background-color: #01416d;
-    color: #fff;
-    padding: 10px 0;
     text-align: center;
 }
 
-header img {
-    width: 150px;
+.banner {
+    background-color: #01416d;
+    padding: 20px 0;
+}
+
+.banner img {
+    height: 50px;
 }
 
 .container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
 }
 
-.search-container {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
-}
-
-#searchBox {
-    width: 100%;
+input[type="text"] {
+    width: 300px;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
 }
 
-#searchButton {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #01416d;
-    color: white;
-    border: none;
-    border-radius: 4px;
+button {
+    padding: 10px 20px;
     font-size: 16px;
+    background-color: #01416d;
+    color: #fff;
+    border: none;
     cursor: pointer;
+    border-radius: 4px;
 }
 
-#searchButton:hover {
-    background-color: #003554;
+button:hover {
+    background-color: #00334e;
 }
 
 #suggestions {
     position: absolute;
-    width: 100%;
+    width: 300px;
     border: 1px solid #ddd;
     background-color: #fff;
     z-index: 1000;
@@ -68,6 +51,7 @@ header img {
     overflow-y: auto;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 4px 4px;
+    margin: 0 auto;
 }
 
 #suggestions div {
@@ -81,37 +65,36 @@ header img {
 }
 
 #resultBox {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+#sideLists {
+    display: flex;
+    justify-content: space-around;
     margin-top: 20px;
 }
 
-h3 {
-    margin-top: 20px;
-    font-weight: bold;
+#keywordsList, #avoidList {
+    width: 45%;
+    text-align: left;
+}
+
+#keywordsList h3, #avoidList h3 {
+    font-size: 20px;
     color: #01416d;
 }
 
-ul {
+#keywordsList ul, #avoidList ul {
     list-style-type: none;
     padding: 0;
 }
 
-li {
-    padding: 5px 0;
+#keywordsList li, #avoidList li {
+    font-size: 16px;
+    margin: 5px 0;
 }
 
-#keywordsList, #avoidList {
-    margin-top: 20px;
-}
-
-#keywordsList ul, #avoidList ul {
-    margin: 0;
-    padding: 0;
-}
-
-#avoidList ul {
-    color: red;
-}
-
-#avoidList h3 {
+#avoidList li {
     color: red;
 }
