@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profession to Insurance</title>
+    <title>Profession Search</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <img src="cfc-logo.png" alt="CFC Underwriting">
-    </header>
-    <div class="container">
-        <div class="search-container">
-            <input type="text" id="searchBox" placeholder="Type a profession...">
-            <div id="suggestions"></div>
-            <button id="searchButton">Search</button>
-        </div>
-        <div id="resultBox"></div>
-        <div id="keywordsList"></div>
-        <div id="avoidList"></div>
+    <div class="banner">
+        <img src="cfc-logo.png" alt="CFC Logo">
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.min.js"></script>
+    <div class="container">
+        <h1>Search for a Profession</h1>
+        <input type="text" id="searchBox" placeholder="Enter Profession">
+        <div id="suggestions"></div>
+        <button id="searchButton">Search</button>
+        <div id="resultBox"></div>
+        <div id="sideLists">
+            <div id="keywordsList"></div>
+            <div id="avoidList"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
