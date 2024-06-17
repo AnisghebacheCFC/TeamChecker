@@ -9,7 +9,6 @@ body {
 .banner {
     background-color: #01416d;
     padding: 20px 0;
-    text-align: center;
 }
 
 .banner img {
@@ -17,52 +16,13 @@ body {
 }
 
 .container {
-    margin: 20px auto;
-    padding: 20px;
-    width: 50%;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
-}
-
-h1 {
-    text-align: center;
-    font-weight: normal;
-    color: #01416d;
+    margin: 20px 0;
 }
 
 input[type="text"] {
     width: 300px;
     padding: 10px;
     font-size: 16px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-#suggestions {
-    position: absolute;
-    width: 300px;
-    background-color: white;
-    border: 1px solid #ccc;
-    max-height: 150px;
-    overflow-y: auto;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 4px 4px;
-    margin-left: calc(25% + 10px); /* Adjusted for center alignment */
-    margin-top: -12px; /* To align with the input box */
-}
-
-#suggestions div {
-    padding: 10px;
-    cursor: pointer;
-}
-
-#suggestions div:hover {
-    background-color: #f0f0f0;
 }
 
 button {
@@ -72,9 +32,6 @@ button {
     color: #fff;
     border: none;
     cursor: pointer;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 button:hover {
