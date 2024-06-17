@@ -615,7 +615,6 @@ const professions = [
 
 console.log(professions);
 
-
 // Function to find the best match for the user input using Fuse.js
 function findBestMatch(input, professions) {
     const options = {
@@ -663,7 +662,7 @@ function displayLists(insurance) {
 
     const avoidIndicators = {
         "Property and Casualty": ["Animal Products", "Bio", "Biotics", "Blood bank", "Cannabis", "CBD", "Clinical Trials", "Drugs", "Hemp", "Laboratories", "Medical Devices (MD)", "Natural Health Products", "Nutra", "Nutraceuticals", "Pain relief", "Patients", "Pharmaceuticals", "Research & Development (R&D)", "Research Trials", "Stem cell bank", "Supplements", "Therapeutic devices", "Vitamins"],
-        "Healthcare": ["Allied Health", "Ambulance", "Assisted Living", "Blood collection", "Clinic", "Drug distibution", "Health", "Facial", "Fitness", "General Practice", "Home Healthcare", "Massage", "Medical", "Medical practitioners", "Medical Staffing", "Nails", "Nursing", "Nursing homes", "Nutrition", "Ophthalmology", "Pharmacy", "Podiatry"],
+        "Healthcare": ["Allied Health", "Ambulance", "Assisted Living", "Blood collection", "Clinic", "Drug distribution", "Health", "Facial", "Fitness", "General Practice", "Home Healthcare", "Massage", "Medical", "Medical practitioners", "Medical Staffing", "Nails", "Nursing", "Nursing homes", "Nutrition", "Ophthalmology", "Pharmacy", "Podiatry"],
         "Life Sciences": ["Animal Products", "Bio", "Biotics", "Blood bank", "Cannabis", "CBD", "Clinical Trials", "Drugs", "Hemp", "Laboratories", "Medical Devices (MD)", "Nutra", "Pain Relief", "Patients", "Research and Development (R&D)", "Research Trials", "Stem cell bank", "Supplements (food, dietary)", "Therapeutic devices", "Vitamins"]
     };
 
