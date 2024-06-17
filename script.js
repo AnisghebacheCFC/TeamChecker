@@ -616,8 +616,6 @@ const professions = [
 console.log(professions);
 
 
-console.log(professions);
-
 // Function to find the best match for the user input using Fuse.js
 function findBestMatch(input, professions) {
     const options = {
