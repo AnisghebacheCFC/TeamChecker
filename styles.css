@@ -83,7 +83,6 @@ button:hover {
 #resultBox {
     margin-top: 20px;
     text-align: center;
-    font-weight: bold;
 }
 
 #keywordsList, #avoidList {
@@ -122,6 +121,7 @@ button:hover {
 .list {
     width: 50%;
     padding: 0 10px;
+    text-align: center;
 }
 
 .policy-container, .container, .suggest-container {
@@ -138,12 +138,10 @@ button:hover {
     border-radius: 4px;
 }
 
-.policy-container .result-box {
+.result-box {
     background-color: #fff;
-    width: 100%;
     padding: 10px;
     margin-top: 10px;
-    border: 1px solid #ddd;
     border-radius: 4px;
     font-weight: bold;
 }
