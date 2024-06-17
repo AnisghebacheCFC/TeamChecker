@@ -76,10 +76,12 @@ button:hover {
 #keywordsList h3, #avoidList h3 {
     font-weight: bold;
     color: #01416d;
+    text-align: left;
 }
 
 #avoidList h3 {
     color: red;
+    text-align: left;
 }
 
 #keywordsList li, #avoidList li {
@@ -103,4 +105,14 @@ button:hover {
 #suggestions {
     width: calc(100% - 22px); /* Match the width of the search box */
     text-align: left;
+}
+
+.lists-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.list {
+    width: 45%;
 }
