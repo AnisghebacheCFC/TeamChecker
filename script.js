@@ -611,6 +611,254 @@ const professions = [
     { name: "Railway Construction", insurance: "Property and Casualty" },
     { name: "Bridge Construction", insurance: "Property and Casualty" },
     { name: "Tunnel Construction", insurance: "Property and Casualty" },
+        { name: "Arborist", insurance: "Professions" },
+    { name: "Auctioneer", insurance: "Professions" },
+    { name: "Call Centre", insurance: "Professions" },
+    { name: "Career Advisor", insurance: "Professions" },
+    { name: "Claim Benefit Administrator", insurance: "Professions" },
+    { name: "Education Consultant", insurance: "Professions" },
+    { name: "Energy Consultant", insurance: "Professions" },
+    { name: "Phase 1", insurance: "Professions" },
+    { name: "Phase 2", insurance: "Professions" },
+    { name: "Phase 3", insurance: "Professions" },
+    { name: "Phase 4", insurance: "Professions" },
+    { name: "Export Agent", insurance: "Professions" },
+    { name: "Farm Manager", insurance: "Professions" },
+    { name: "Fire Consultant", insurance: "Professions" },
+    { name: "Fire Protection", insurance: "Professions" },
+    { name: "Food Industry Consultant", insurance: "Professions" },
+    { name: "Forestry Consultant", insurance: "Professions" },
+    { name: "Freight Forwarder", insurance: "Professions" },
+    { name: "Funeral Director / Home", insurance: "Professions" },
+    { name: "Home Stager", insurance: "Professions" },
+    { name: "Information Bureau", insurance: "Professions" },
+    { name: "Interpreter", insurance: "Professions" },
+    { name: "Investigation Consultant", insurance: "Professions" },
+    { name: "Management Consultant", insurance: "Professions" },
+    { name: "Market Research Consultant", insurance: "Professions" },
+    { name: "Migration Agent", insurance: "Professions" },
+    { name: "Mining Consultant", insurance: "Professions" },
+    { name: "Procurement Consultant", insurance: "Professions" },
+    { name: "Quality Assurance Consultant", insurance: "Professions" },
+    { name: "Relocation Consultant", insurance: "Professions" },
+    { name: "Security Consultant", insurance: "Professions" },
+    { name: "Sports Agent", insurance: "Professions" },
+    { name: "Traffic Consultant", insurance: "Professions" },
+    { name: "Translator", insurance: "Professions" },
+    { name: "Utility Locator", insurance: "Professions" },
+    { name: "Valuator", insurance: "Professions" },
+    { name: "Welding Inspector", insurance: "Professions" },
+    { name: "WETT Inspector", insurance: "Professions" },
+    { name: "Clinical Research Consulting (No Patient Trials)", insurance: "Professions" },
+    { name: "Expert Witness", insurance: "Professions" },
+    { name: "Independent Medical Evaluator", insurance: "Professions" },
+    { name: "Healthcare Consultant", insurance: "Professions" },
+    { name: "Medical Case Management", insurance: "Professions" },
+    { name: "Medical Records Consultant", insurance: "Professions" },
+    { name: "Oil and Gas Consultant", insurance: "Professions" },
+    { name: "Drilling", insurance: "Professions" },
+    { name: "Completions", insurance: "Professions" },
+    { name: "Workover", insurance: "Professions" },
+    { name: "Observe & Report Only", insurance: "Professions" },
+    { name: "Health & Safety Consultant", insurance: "Professions" },
+    { name: "Inspector", insurance: "Professions" },
+    { name: "Oil and Gas Inspector", insurance: "Professions" },
+    { name: "Pipeline Integrity", insurance: "Professions" },
+    { name: "Non-Destructive Testing (Midstream/Downstream)", insurance: "Professions" },
+    { name: "Advertising Agent", insurance: "Media" },
+    { name: "Promotor", insurance: "Media" },
+    { name: "Public Relations Consultant", insurance: "Media" },
+    { name: "Photography", insurance: "Media" },
+    { name: "Marketing", insurance: "Media" },
+    { name: "Direct Mail Marketing", insurance: "Media" },
+    { name: "Digital Marketing", insurance: "Media" },
+    { name: "Testing Laboratory", insurance: "Professions" },
+    { name: "Batch Release", insurance: "Professions" },
+    { name: "Environmental testing", insurance: "Professions" },
+    { name: "Technician", insurance: "Professions" },
+    { name: "Measurement - While - Drilling", insurance: "Professions" },
+    { name: "Directional Drilling", insurance: "Professions" },
+    { name: "Geosteering", insurance: "Professions" },
+    { name: "Manager", insurance: "Professions" },
+    { name: "Oil and Gas Manager", insurance: "Professions" },
+    { name: "Supervisor", insurance: "Professions" },
+    { name: "Company Man", insurance: "Professions" },
+    { name: "Management of Companies and Enterprises", insurance: "Professions" },
+    { name: "Administration Services", insurance: "Professions" },
+    { name: "Mail Centres", insurance: "Professions" },
+    { name: "Telephone Answering", insurance: "Professions" },
+    { name: "Document Preparation", insurance: "Professions" },
+    { name: "Telemarketing", insurance: "Professions" },
+    { name: "Call Centres/Contact Centres", insurance: "Professions" },
+    { name: "Debt Collection & Repossession Services", insurance: "Professions" },
+    { name: "Credit Bureau", insurance: "Financial Institutions" },
+    { name: "Transcription Services, Typing & Court Reporting", insurance: "Professions" },
+    { name: "Online Retail", insurance: "Professions" },
+    { name: "Online Gambling", insurance: "Media" },
+    { name: "Travel Agency", insurance: "Professions" },
+    { name: "Travel Operator", insurance: "Professions" },
+    { name: "Visitor Centres", insurance: "Property and Casualty" },
+    { name: "Web Development", insurance: "Tech" },
+    { name: "Video Game Development", insurance: "Tech" },
+    { name: "Artificial Intelligence", insurance: "Tech" },
+    { name: "Chat Bot", insurance: "Tech" },
+    { name: "Diagnostic Decision Support System", insurance: "Tech" },
+    { name: "Image Processing", insurance: "Tech" },
+    { name: "Fund Transfer Software", insurance: "FinTech" },
+    { name: "Payment Processing Software", insurance: "FinTech" },
+    { name: "Investment Management Software", insurance: "FinTech" },
+    { name: "Trading Software", insurance: "FinTech" },
+    { name: "Remote Patient Monitoring", insurance: "Tech" },
+    { name: "Health/Fitness/Wellbeing", insurance: "Tech" },
+    { name: "Software", insurance: "Tech" },
+    { name: "Platform", insurance: "Tech" },
+    { name: "Organisation Tool", insurance: "Professions" },
+    { name: "Life Science", insurance: "Life Sciences" },
+    { name: "Clinical Trial Management", insurance: "Life Sciences" },
+    { name: "Laboratory Management Tool", insurance: "Life Sciences" },
+    { name: "Applications", insurance: "Tech" },
+    { name: "Training Software", insurance: "Tech" },
+    { name: "Robot Process Automation", insurance: "Tech" },
+    { name: "Autonomous Vehicles", insurance: "Tech" },
+    { name: "Blockchain", insurance: "FinTech" },
+    { name: "Cryptocurrency", insurance: "FinTech" },
+    { name: "Cannabis Software", insurance: "Tech" },
+    { name: "Computer Aided Design Software", insurance: "Tech" },
+    { name: "ERP Software", insurance: "Tech" },
+    { name: "CRM Software", insurance: "Tech" },
+    { name: "Document Management Software", insurance: "Tech" },
+    { name: "Security Software", insurance: "Tech" },
+    { name: "Logistics and Shipping Software", insurance: "Tech" },
+    { name: "SMS/Text Messaging Software", insurance: "Tech" },
+    { name: "Content Management Software", insurance: "Tech" },
+    { name: "Streaming Software", insurance: "Tech" },
+    { name: "POS Software", insurance: "Tech" },
+    { name: "Software Publishing", insurance: "Tech" },
+    { name: "Web Publishing", insurance: "Tech" },
+    { name: "Video Game Publishing", insurance: "Tech" },
+    { name: "Gambling", insurance: "Media" },
+    { name: "Payment processing", insurance: "FinTech" },
+    { name: "Hardware", insurance: "Tech" },
+    { name: "Hardware Assembly", insurance: "Tech" },
+    { name: "Hardware Design", insurance: "Tech" },
+    { name: "Robotics", insurance: "Tech" },
+    { name: "Hardware Installation", insurance: "Tech" },
+    { name: "Hardware Maintenance", insurance: "Tech" },
+    { name: "Hardware Repair", insurance: "Tech" },
+    { name: "Hardware Recycling", insurance: "Tech" },
+    { name: "IT Project Management", insurance: "Tech" },
+    { name: "IT Security Consulting", insurance: "Tech" },
+    { name: "Systems Integration", insurance: "Tech" },
+    { name: "Systems/Network Architecture", insurance: "Tech" },
+    { name: "ePrescribing", insurance: "Healthcare" },
+    { name: "eBooking", insurance: "Healthcare" },
+    { name: "Clinical Administration", insurance: "Healthcare" },
+    { name: "Data Centre Operation", insurance: "Tech" },
+    { name: "Data Processing", insurance: "Tech" },
+    { name: "Domain Name Registration", insurance: "Tech" },
+    { name: "Data Aggregator", insurance: "Tech" },
+    { name: "IT Support", insurance: "Tech" },
+    { name: "Helpdesk", insurance: "Tech" },
+    { name: "Software Installation", insurance: "Tech" },
+    { name: "Systems Maintenance", insurance: "Tech" },
+    { name: "Backup and Recovery Services", insurance: "Tech" },
+    { name: "Infrastructure Management and Monitoring", insurance: "Tech" },
+    { name: "Managed Security Service Provision", insurance: "Tech" },
+    { name: "Logistics", insurance: "Professions" },
+    { name: "Road Logistics", insurance: "Professions" },
+    { name: "Postal and Courrier Services", insurance: "Professions" },
+    { name: "Rail Logistics", insurance: "Professions" },
+    { name: "Marine Logistics", insurance: "Professions" },
+    { name: "Warehousing", insurance: "Professions" },
+    { name: "Pipeline Logistics", insurance: "Professions" },
+    { name: "Transportation", insurance: "Professions" },
+    { name: "Taxi Services", insurance: "Professions" },
+    { name: "Rail Transport", insurance: "Professions" },
+    { name: "Marine Transport", insurance: "Professions" },
+    { name: "Hemp supplements", insurance: "Product Recall" },
+    { name: "Hemp Ingestible", insurance: "Product Recall" },
+    { name: "Hemp Topical", insurance: "Product Recall" },
+    { name: "Sport Supplements", insurance: "Product Recall" },
+    { name: "Weight Loss", insurance: "Product Recall" },
+    { name: "Sexual Enhancement", insurance: "Product Recall" },
+    { name: "Energy Shot", insurance: "Product Recall" },
+    { name: "Pre workout Formula", insurance: "Product Recall" },
+    { name: "Food & Beverage", insurance: "Product Recall" },
+    { name: "Pet food", insurance: "Product Recall" },
+    { name: "Fruit and Vegetables", insurance: "Product Recall" },
+    { name: "Bakery", insurance: "Product Recall" },
+    { name: "Beverage", insurance: "Product Recall" },
+    { name: "Medical Food", insurance: "Product Recall" },
+    { name: "Functional Food", insurance: "Product Recall" },
+    { name: "Herbs", insurance: "Product Recall" },
+    { name: "Vitamins & Minerals", insurance: "Product Recall" },
+    { name: "Prebiotics", insurance: "Product Recall" },
+    { name: "Probiotics", insurance: "Product Recall" },
+    { name: "Clothing", insurance: "Product Recall" },
+    { name: "Sports Clothing", insurance: "Product Recall" },
+    { name: "Durable Medical Equipment Supplier", insurance: "Healthcare" },
+    { name: "Medical Device", insurance: "Healthcare" },
+    { name: "Non-invasive", insurance: "Healthcare" },
+    { name: "Invasive", insurance: "Healthcare" },
+    { name: "In vitro diagnostic device", insurance: "Healthcare" },
+    { name: "Pharmaceuticals", insurance: "Healthcare" },
+    { name: "Topical Applications", insurance: "Healthcare" },
+    { name: "Over the counter pharmaceutical", insurance: "Healthcare" },
+    { name: "Standard generic drugs", insurance: "Healthcare" },
+    { name: "Ethical / on-patent drugs", insurance: "Healthcare" },
+    { name: "Lifestyle drugs / exclusion buy-backs / blood products / vaccines", insurance: "Healthcare" },
+    { name: "Biologics", insurance: "Healthcare" },
+    { name: "Scientific", insurance: "Life Sciences" },
+    { name: "Laboratory Equipment", insurance: "Life Sciences" },
+    { name: "Process automation", insurance: "Life Sciences" },
+    { name: "Cold Storage", insurance: "Life Sciences" },
+    { name: "Reagents, proteins, lab consumables", insurance: "Life Sciences" },
+    { name: "Clinical trial drug materials", insurance: "Life Sciences" },
+    { name: "Contracting", insurance: "Professions" },
+    { name: "Carpentry and Woodwork", insurance: "Professions" },
+    { name: "Electrical Contracting", insurance: "Professions" },
+    { name: "HVAC and Plumbing", insurance: "Professions" },
+    { name: "Landscaping and Gardening", insurance: "Professions" },
+    { name: "Painting", insurance: "Professions" },
+    { name: "Roofing", insurance: "Professions" },
+    { name: "Pipeline Construction/Maintenance (Water & Wastewater)", insurance: "Property and Casualty" },
+    { name: "Pipeline Construction/Maintenance (Petrochemicals)", insurance: "Property and Casualty" },
+    { name: "Communications & Power Line Construction/Maintenance", insurance: "Property and Casualty" },
+    { name: "National Government", insurance: "Professions" },
+    { name: "Local Government", insurance: "Professions" },
+    { name: "Municipality", insurance: "Professions" },
+    { name: "Housing Authority", insurance: "Professions" },
+    { name: "Social Services", insurance: "Professions" },
+    { name: "Ex government authorities", insurance: "Professions" },
+    { name: "Other Services", insurance: "Professions" },
+    { name: "Security Services", insurance: "Professions" },
+    { name: "Security Guard Services", insurance: "Professions" },
+    { name: "Armored Car Services", insurance: "Professions" },
+    { name: "Locksmiths", insurance: "Professions" },
+    { name: "Pest Control & Extermination", insurance: "Professions" },
+    { name: "Cleaning Services", insurance: "Professions" },
+    { name: "Commercial Cleaning", insurance: "Professions" },
+    { name: "Household Cleaning", insurance: "Professions" },
+    { name: "Car Wash", insurance: "Professions" },
+    { name: "Dry Cleaning & Laundry Services", insurance: "Professions" },
+    { name: "Repair & Maintenance", insurance: "Professions" },
+    { name: "Automotive Repair & Maintenance", insurance: "Professions" },
+    { name: "Appliance Repair & Maintenance", insurance: "Professions" },
+    { name: "Electronics Repair & Maintenance", insurance: "Professions" },
+    { name: "Furniture Repair & Maintenance", insurance: "Professions" },
+    { name: "Other Consumer Goods Repair & Maintenance", insurance: "Professions" },
+    { name: "Industrial Machinery & Equipment Repair & Maintenance", insurance: "Professions" },
+    { name: "Facilities Management", insurance: "Professions" },
+    { name: "Parking Services", insurance: "Professions" },
+    { name: "Personal Care", insurance: "Professions" },
+    { name: "Barbers & Hairdressers", insurance: "Professions" },
+    { name: "Nail Salons", insurance: "Professions" },
+    { name: "Rental & Leasing", insurance: "Professions" },
+    { name: "Real Estate Leasing", insurance: "Professions" },
+    { name: "Vehicle Leasing", insurance: "Professions" },
+    { name: "Machinery & Equipment Leasing", insurance: "Professions" },
+    { name: "Commercial Transport Leasing", insurance: "Professions" },
+    { name: "Consumer Product Rental", insurance: "Professions" },
 ];
 
 
@@ -627,6 +875,48 @@ function findBestMatch(input, professions) {
 
     return result.length ? result[0].item : { name: '', insurance: '' };
 }
+
+
+// Add event listener to the search box for suggestions
+document.getElementById('searchBox').addEventListener('input', function() {
+    const input = this.value.trim();
+    const options = {
+        keys: ['name'],
+        threshold: 0.3
+    };
+    const fuse = new Fuse(professions, options);
+    const results = fuse.search(input);
+
+    const suggestions = document.getElementById('suggestions');
+    suggestions.innerHTML = '';
+
+    const seen = new Set(); // To keep track of already added suggestions
+
+    if (input) {
+        results.forEach(result => {
+            if (!seen.has(result.item.name)) {
+                seen.add(result.item.name);
+                const div = document.createElement('div');
+                div.textContent = result.item.name;
+                div.addEventListener('click', () => {
+                    document.getElementById('searchBox').value = result.item.name;
+                    suggestions.innerHTML = '';
+                    document.getElementById('searchButton').click();
+                });
+                suggestions.appendChild(div);
+            }
+        });
+    }
+});
+
+// Add event listener for the enter key
+document.getElementById('searchBox').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault(); // Prevent the default form submission behavior
+        document.getElementById('searchButton').click();
+    }
+});
+
 
 // Adjust the search function
 document.getElementById('searchButton').addEventListener('click', function() {
@@ -674,18 +964,20 @@ function displayLists(insurance) {
     keywordList.innerHTML = `<h3>${insurance} Keywords</h3><ul>` + (keywords[insurance] || []).map(keyword => `<li>${keyword}</li>`).join('') + `</ul>`;
 
     // Display avoid indicators only if applicable
-    if (avoidIndicators[insurance] && avoidIndicators[insurance].length > 0) {
-        let alternative = "";
+    if (insurance !== "Healthcare" && avoidIndicators[insurance] && avoidIndicators[insurance].length > 0) {
         if (insurance === "Property and Casualty") {
-            alternative = "LIFE SCIENCE";
-        } else if (insurance === "Healthcare") {
-            alternative = "HEALTHCARE";
+            avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting LIFE SCIENCE</h3><ul>` + avoidIndicators["Life Sciences"].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
+            avoidList.innerHTML += `<h3>Indicators to AVOID, consider selecting HEALTHCARE</h3><ul>` + avoidIndicators["Healthcare"].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
         } else if (insurance === "Life Sciences") {
-            alternative = "HEALTHCARE";
+            avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting HEALTHCARE</h3><ul>` + avoidIndicators["Healthcare"].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
+        } else {
+            const alternative = insurance === "Healthcare" ? "LIFE SCIENCE" : "HEALTHCARE";
+            avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting ${alternative}</h3><ul>` + avoidIndicators[alternative].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
         }
-
-        avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting ${alternative}</h3><ul>` + avoidIndicators[insurance].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
+    } else if (insurance === "Healthcare") {
+        avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting LIFE SCIENCE</h3><ul>` + avoidIndicators["Life Sciences"].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
     } else {
         avoidList.innerHTML = '';
     }
+
 }
