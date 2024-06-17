@@ -3,11 +3,24 @@
 body {
     font-family: 'Montserrat', sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     height: 100vh;
     margin: 0;
     background-color: #f0f0f0;
+}
+
+header, footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #0072ce;
+}
+
+.logo {
+    max-width: 150px;
+    height: auto;
 }
 
 .container {
@@ -16,6 +29,11 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
 }
 
 h1 {
@@ -57,4 +75,28 @@ button:hover {
     color: #0072ce;
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
+}
+
+.side-box {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    text-align: left;
+}
+
+.side-box h2 {
+    color: #0072ce;
+    font-weight: 400;
+    font-size: 1.1em;
+}
+
+.side-box ul {
+    padding-left: 20px;
+}
+
+.side-box ul li {
+    margin: 5px 0;
 }
