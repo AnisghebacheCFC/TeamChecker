@@ -4,35 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insurance Team Search</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
+        <img src="logo.png" alt="Logo" class="logo">
         <h1>Insurance Team Search</h1>
     </header>
     <main>
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Enter an activity" autocomplete="off">
+            <input type="text" id="search-input" placeholder="Enter an activity">
             <button id="search-button">Search</button>
         </div>
-        <div id="suggestions" class="suggestions"></div>
-        <div id="result">
-            <h2>Indicators to AVOID</h2>
-            <ul id="avoid-indicators"></ul>
-        </div>
-        <div id="keywords">
-            <h2>Keywords</h2>
-            <ul id="keywords-list"></ul>
+        <div id="suggestions-container" class="suggestions-container"></div>
+        <div class="results-container">
+            <div id="insurance-type" class="insurance-type"></div>
+            <div id="keywords" class="keywords"></div>
+            <div id="avoid-list" class="avoid-list"></div>
         </div>
         <div class="suggest-activity">
             <h2>Suggest an activity to be added</h2>
-            <input type="text" id="activity-suggestion" placeholder="Enter activity">
-            <button id="submit-suggestion" onclick="submitSuggestion()">Submit</button>
+            <input type="text" id="activity-suggestion" placeholder="Enter activity here">
+            <button id="submit-suggestion">Submit</button>
         </div>
     </main>
-    <footer>
-        <p>&copy; 2024 CFC</p>
-    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
