@@ -17,23 +17,35 @@ body {
 
 .container {
     margin: 20px 0;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-}
-
-.search-container {
     position: relative;
-    display: inline-block;
 }
 
 input[type="text"] {
     width: 300px;
     padding: 10px;
     font-size: 16px;
+}
+
+#suggestions {
+    position: absolute;
+    width: 300px;
+    background-color: white;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+    margin-top: -1px; /* Aligns the suggestions box with the search input */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 4px 4px;
+}
+
+#suggestions div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+#suggestions div:hover {
+    background-color: #f0f0f0;
 }
 
 button {
@@ -44,33 +56,10 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 4px;
-    margin-left: 10px;
 }
 
 button:hover {
     background-color: #00334e;
-}
-
-#suggestions {
-    position: absolute;
-    width: 100%;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    z-index: 1000;
-    max-height: 150px;
-    overflow-y: auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 4px 4px;
-}
-
-#suggestions div {
-    padding: 8px;
-    cursor: pointer;
-    border-bottom: 1px solid #ddd;
-}
-
-#suggestions div:hover {
-    background-color: #f0f0f0;
 }
 
 #resultBox {
