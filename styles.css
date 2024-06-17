@@ -25,7 +25,7 @@ body {
 }
 
 input[type="text"] {
-    width: 100%;
+    width: calc(100% - 22px);
     padding: 10px;
     font-size: 16px;
     margin-bottom: 10px;
@@ -36,13 +36,12 @@ input[type="text"] {
 
 #suggestions {
     position: absolute;
-    width: calc(100% - 42px);
+    width: calc(100% - 22px);
     background-color: white;
     border: 1px solid #ccc;
     max-height: 150px;
     overflow-y: auto;
     z-index: 1000;
-    margin-top: -10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 4px 4px;
 }
