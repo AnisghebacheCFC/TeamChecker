@@ -613,6 +613,7 @@ const professions = [
     { name: "Tunnel Construction", insurance: "Property and Casualty" },
 ];
 
+
 console.log(professions);
 
 // Function to find the best match for the user input using Fuse.js
@@ -661,7 +662,7 @@ function displayLists(insurance) {
     };
 
     const avoidIndicators = {
-        "Property and Casualty": ["Animal Products", "Bio", "Biotics", "Blood bank", "Cannabis", "CBD", "Clinical Trials", "Drugs", "Hemp", "Laboratories", "Medical Devices (MD)", "Natural Health Products", "Nutra", "Nutraceuticals", "Pain relief", "Patients", "Pharmaceuticals", "Research & Development (R&D)", "Research Trials", "Stem cell bank", "Supplements", "Therapeutic devices", "Vitamins"],
+        "Property and Casualty": ["Restaurant", "Leisure center", "Gym", "Cafe"],
         "Healthcare": ["Allied Health", "Ambulance", "Assisted Living", "Blood collection", "Clinic", "Drug distribution", "Health", "Facial", "Fitness", "General Practice", "Home Healthcare", "Massage", "Medical", "Medical practitioners", "Medical Staffing", "Nails", "Nursing", "Nursing homes", "Nutrition", "Ophthalmology", "Pharmacy", "Podiatry"],
         "Life Sciences": ["Animal Products", "Bio", "Biotics", "Blood bank", "Cannabis", "CBD", "Clinical Trials", "Drugs", "Hemp", "Laboratories", "Medical Devices (MD)", "Nutra", "Pain Relief", "Patients", "Research and Development (R&D)", "Research Trials", "Stem cell bank", "Supplements (food, dietary)", "Therapeutic devices", "Vitamins"]
     };
@@ -669,6 +670,22 @@ function displayLists(insurance) {
     const keywordList = document.getElementById('keywordsList');
     const avoidList = document.getElementById('avoidList');
 
+    // Display keywords
     keywordList.innerHTML = `<h3>${insurance} Keywords</h3><ul>` + (keywords[insurance] || []).map(keyword => `<li>${keyword}</li>`).join('') + `</ul>`;
-    avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting ${insurance === "Property and Casualty" ? "LIFE SCIENCE" : "HEALTHCARE"}</h3><ul>` + (avoidIndicators[insurance] || []).map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
+
+    // Display avoid indicators only if applicable
+    if (avoidIndicators[insurance] && avoidIndicators[insurance].length > 0) {
+        let alternative = "";
+        if (insurance === "Property and Casualty") {
+            alternative = "LIFE SCIENCE";
+        } else if (insurance === "Healthcare") {
+            alternative = "HEALTHCARE";
+        } else if (insurance === "Life Sciences") {
+            alternative = "HEALTHCARE";
+        }
+
+        avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting ${alternative}</h3><ul>` + avoidIndicators[insurance].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
+    } else {
+        avoidList.innerHTML = '';
+    }
 }
