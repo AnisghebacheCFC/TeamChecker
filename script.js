@@ -615,7 +615,6 @@ const professions = [
 
 console.log(professions);
 
-pip install fuzzywuzzy
 
 // Import the fuzzywuzzy library
 const { fuzz } = require('fuzzywuzzy');
