@@ -628,6 +628,7 @@ function findBestMatch(input, professions) {
     return result.length ? result[0].item : { name: '', insurance: '' };
 }
 
+
 // Add event listener to the search box for suggestions
 document.getElementById('searchBox').addEventListener('input', function() {
     const input = this.value.trim();
@@ -641,19 +642,33 @@ document.getElementById('searchBox').addEventListener('input', function() {
     const suggestions = document.getElementById('suggestions');
     suggestions.innerHTML = '';
 
+    const seen = new Set(); // To keep track of already added suggestions
+
     if (input) {
         results.forEach(result => {
-            const div = document.createElement('div');
-            div.textContent = result.item.name;
-            div.addEventListener('click', () => {
-                document.getElementById('searchBox').value = result.item.name;
-                suggestions.innerHTML = '';
-                document.getElementById('searchButton').click();
-            });
-            suggestions.appendChild(div);
+            if (!seen.has(result.item.name)) {
+                seen.add(result.item.name);
+                const div = document.createElement('div');
+                div.textContent = result.item.name;
+                div.addEventListener('click', () => {
+                    document.getElementById('searchBox').value = result.item.name;
+                    suggestions.innerHTML = '';
+                    document.getElementById('searchButton').click();
+                });
+                suggestions.appendChild(div);
+            }
         });
     }
 });
+
+// Add event listener for the enter key
+document.getElementById('searchBox').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault(); // Prevent the default form submission behavior
+        document.getElementById('searchButton').click();
+    }
+});
+
 
 // Adjust the search function
 document.getElementById('searchButton').addEventListener('click', function() {
@@ -716,44 +731,5 @@ function displayLists(insurance) {
     } else {
         avoidList.innerHTML = '';
     }
-    // Add event listener to the search box for suggestions
-document.getElementById('searchBox').addEventListener('input', function() {
-    const input = this.value.trim();
-    const options = {
-        keys: ['name'],
-        threshold: 0.3
-    };
-    const fuse = new Fuse(professions, options);
-    const results = fuse.search(input);
-
-    const suggestions = document.getElementById('suggestions');
-    suggestions.innerHTML = '';
-
-    const seen = new Set(); // To keep track of already added suggestions
-
-    if (input) {
-        results.forEach(result => {
-            if (!seen.has(result.item.name)) {
-                seen.add(result.item.name);
-                const div = document.createElement('div');
-                div.textContent = result.item.name;
-                div.addEventListener('click', () => {
-                    document.getElementById('searchBox').value = result.item.name;
-                    suggestions.innerHTML = '';
-                    document.getElementById('searchButton').click();
-                });
-                suggestions.appendChild(div);
-            }
-        });
-    }
-});
-
-// Add event listener for the enter key
-document.getElementById('searchBox').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-        e.preventDefault(); // Prevent the default form submission behavior
-        document.getElementById('searchButton').click();
-    }
-});
 
 }
