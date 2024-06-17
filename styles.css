@@ -16,25 +16,33 @@ body {
 }
 
 .container {
-    margin: 20px 0;
-    position: relative;
+    margin: 20px auto;
+    padding: 20px;
+    width: 50%;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 input[type="text"] {
-    width: 300px;
+    width: 100%;
     padding: 10px;
     font-size: 16px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 #suggestions {
     position: absolute;
-    width: 300px;
+    width: calc(100% - 42px);
     background-color: white;
     border: 1px solid #ccc;
     max-height: 150px;
     overflow-y: auto;
     z-index: 1000;
-    margin-top: -1px; /* Aligns the suggestions box with the search input */
+    margin-top: -10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 4px 4px;
 }
@@ -56,6 +64,8 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 button:hover {
