@@ -20,20 +20,7 @@ body {
     max-height: 50px;
 }
 
-.policy-container {
-    background-color: #149bd7;
-    max-width: 800px;
-    width: 100%;
-    padding: 20px;
-    margin: 20px 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
-    position: relative;
-    top: 20px;
-}
-
-.container {
+.container, .policy-container, .suggestion-container {
     max-width: 800px;
     width: 100%;
     background-color: #fff;
@@ -41,21 +28,17 @@ body {
     margin: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.suggest-container {
-    max-width: 800px;
-    width: 100%;
-    background-color: #fff;
-    padding: 20px;
-    margin: 20px 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
+.policy-container {
+    background-color: #149bd7;
+    margin-top: 40px; /* Lower the container */
 }
 
-h1, h2 {
+h1 {
     color: #01416d;
 }
 
@@ -80,14 +63,8 @@ button:hover {
     background-color: #012d4a;
 }
 
-#resultBox {
+#resultBox, #keywordsList, #avoidList {
     margin-top: 20px;
-    text-align: center;
-}
-
-#keywordsList, #avoidList {
-    margin-top: 20px;
-    text-align: left;
 }
 
 #keywordsList ul, #avoidList ul {
@@ -98,58 +75,36 @@ button:hover {
 #keywordsList h3, #avoidList h3 {
     font-weight: bold;
     color: #01416d;
-    text-align: left;
+    text-align: left; /* Left justify the headers */
 }
 
 #avoidList h3 {
     color: red;
-    text-align: left;
 }
 
 #keywordsList li, #avoidList li {
     font-weight: bold;
     margin-bottom: 5px;
+    text-align: left; /* Left justify the list items */
 }
 
-.lists-container {
+#policyResultBox {
+    margin-top: 10px;
     display: flex;
     justify-content: center;
-    text-align: left;
+    align-items: center;
     width: 100%;
 }
 
-.list {
-    width: 50%;
-    padding: 0 10px;
-    text-align: center;
-}
-
-.policy-container, .container, .suggest-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.policy-container input[type="text"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.result-box {
-    background-color: #fff;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 4px;
+#policyResultBox button {
+    width: 100%;
     font-weight: bold;
 }
 
-.suggestions-box {
-    border: 1px solid #ddd;
-    max-height: 100px;
-    overflow-y: auto;
-    width: calc(100% - 22px);
-    text-align: left;
+.suggestion-container {
+    margin-top: auto;
+}
+
+#suggestions {
+    width: calc(100% - 22px); /* Match the width of the search box */
 }
