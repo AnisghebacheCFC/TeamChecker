@@ -861,6 +861,7 @@ const professions = [
     { name: "Consumer Product Rental", insurance: "Professions" },
 ];
 
+
 console.log(professions);
 
 // Function to find the best match for the user input using Fuse.js
