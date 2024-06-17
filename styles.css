@@ -21,41 +21,20 @@ body {
     max-height: 50px;
 }
 
-.main-container {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    padding: 20px;
-}
-
-.sidebar {
-    max-width: 200px;
-    width: 100%;
-    background-color: #fff;
-    padding: 20px;
-    margin-right: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
 .container {
     max-width: 800px;
     width: 100%;
     background-color: #fff;
     padding: 20px;
+    margin: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     flex-grow: 1;
 }
 
-h1, h2 {
+h1 {
     color: #01416d;
     text-align: center;
-}
-
-h3 {
-    color: #01416d;
-    font-weight: bold;
 }
 
 input[type="text"] {
@@ -129,7 +108,22 @@ button:hover {
     color: #01416d;
 }
 
-.suggest-activity-container input[type="text"] {
+.policy-container {
+    max-width: 800px;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.policy-container h2 {
+    color: #01416d;
+}
+
+.policy-container input[type="text"] {
     width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 10px;
@@ -137,7 +131,7 @@ button:hover {
     border-radius: 4px;
 }
 
-.suggest-activity-container button {
+.policy-container button {
     background-color: #01416d;
     color: #fff;
     padding: 10px 20px;
@@ -146,15 +140,10 @@ button:hover {
     cursor: pointer;
 }
 
-.suggest-activity-container button:hover {
+.policy-container button:hover {
     background-color: #012d4a;
 }
 
-#policyResult {
-    margin-top: 10px;
-    color: #01416d;
-}
-
-#policyResult.expired {
-    color: red;
+#policyResultBox {
+    margin-top: 20px;
 }
