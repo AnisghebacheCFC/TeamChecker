@@ -25,6 +25,25 @@ input[type="text"] {
     font-size: 16px;
 }
 
+#suggestions {
+    position: absolute;
+    width: 300px;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+#suggestions div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+#suggestions div:hover {
+    background-color: #f0f0f0;
+}
+
 button {
     padding: 10px 20px;
     font-size: 16px;
