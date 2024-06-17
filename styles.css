@@ -1,0 +1,74 @@
+body {
+    font-family: 'Montserrat Light', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.banner {
+    background-color: #01416d;
+    padding: 20px 0;
+}
+
+.banner img {
+    height: 50px;
+}
+
+.container {
+    margin: 20px 0;
+}
+
+input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #01416d;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00334e;
+}
+
+#resultBox {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+#sideLists {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+#keywordsList, #avoidList {
+    width: 45%;
+    text-align: left;
+}
+
+#keywordsList h3, #avoidList h3 {
+    font-size: 20px;
+    color: #01416d;
+}
+
+#keywordsList ul, #avoidList ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#keywordsList li, #avoidList li {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+#avoidList li {
+    color: red;
+}
