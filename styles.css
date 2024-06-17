@@ -1,112 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
-
 body {
-    font-family: 'Montserrat', sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100vh;
+    font-family: 'Montserrat Light', sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
-    background-color: #f0f0f0; /* Keeping the background color as is */
-}
-
-header, footer {
-    width: 100%;
+    padding: 0;
     text-align: center;
-    padding: 10px;
-    background-color: #01416d; /* Updated banner color */
 }
 
-.logo {
-    max-width: 150px;
-    height: auto;
+.banner {
+    background-color: #01416d;
+    padding: 20px 0;
 }
 
-.main-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    width: 100%;
-    padding: 20px;
+.banner img {
+    height: 50px;
 }
 
 .container {
-    text-align: center;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 0 20px;
-    flex-grow: 1;
+    margin: 20px 0;
 }
 
-h1 {
-    color: #01416d;
-    font-weight: 300; /* Montserrat Light */
-}
-
-input {
-    padding: 10px;
+input[type="text"] {
     width: 300px;
-    margin: 10px 0;
-    border: 1px solid #01416d;
-    border-radius: 5px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
+    padding: 10px;
+    font-size: 16px;
 }
 
 button {
     padding: 10px 20px;
-    cursor: pointer;
-    background-color: #01416d;
-    color: white;
-    border: none;
-    border-radius: 5px;
     font-size: 16px;
-    margin-top: 10px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
+    background-color: #01416d;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 
 button:hover {
-    background-color: #002b4a;
+    background-color: #00334e;
 }
 
-#result {
+#resultBox {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+#sideLists {
+    display: flex;
+    justify-content: space-around;
     margin-top: 20px;
-    font-size: 1.2em;
-    font-weight: bold;
+}
+
+#keywordsList, #avoidList {
+    width: 45%;
+    text-align: left;
+}
+
+#keywordsList h3, #avoidList h3 {
+    font-size: 20px;
     color: #01416d;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
 }
 
-.side-box {
-    background-color: #ffffff; /* Keeping side boxes white to match the design */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    margin: 0 10px;
+#keywordsList ul, #avoidList ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-.side-box h2 {
-    color: #01416d;
-    font-weight: bold;
-    font-size: 1.2em;
+#keywordsList li, #avoidList li {
+    font-size: 16px;
+    margin: 5px 0;
 }
 
-.side-box ul {
-    padding-left: 20px;
-    line-height: 1.8em; /* Increased line spacing */
-}
-
-.side-box ul li {
-    margin: 10px 0;
-    font-weight: bold;
-}
-
-.avoid-item {
+#avoidList li {
     color: red;
 }
