@@ -58,6 +58,11 @@ button:hover {
     background-color: #012d4a;
 }
 
+.center {
+    text-align: center;
+    margin-top: 10px;
+}
+
 #resultBox {
     margin-top: 20px;
 }
