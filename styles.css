@@ -4,8 +4,8 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     min-height: 100vh;
 }
 
@@ -21,54 +21,21 @@ body {
     max-height: 50px;
 }
 
-.main-content {
+.main-container {
     display: flex;
-    justify-content: center;
     width: 100%;
-    max-width: 1200px;
-    margin-top: 20px;
+    justify-content: center;
+    padding: 20px;
 }
 
-.policy-container {
-    width: 300px;
+.sidebar {
+    max-width: 200px;
+    width: 100%;
     background-color: #fff;
     padding: 20px;
     margin-right: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-}
-
-.policy-container h2 {
-    color: #01416d;
-    text-align: center;
-}
-
-.policy-container input[type="text"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.policy-container button {
-    background-color: #01416d;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-}
-
-.policy-container button:hover {
-    background-color: #012d4a;
-}
-
-#policyResult {
-    margin-top: 20px;
-    text-align: center;
 }
 
 .container {
@@ -81,9 +48,14 @@ body {
     flex-grow: 1;
 }
 
-h1 {
+h1, h2 {
     color: #01416d;
     text-align: center;
+}
+
+h3 {
+    color: #01416d;
+    font-weight: bold;
 }
 
 input[type="text"] {
@@ -150,7 +122,7 @@ button:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     text-align: center;
-    margin-top: 20px;
+    margin-top: auto;
 }
 
 .suggest-activity-container h2 {
@@ -176,4 +148,13 @@ button:hover {
 
 .suggest-activity-container button:hover {
     background-color: #012d4a;
+}
+
+#policyResult {
+    margin-top: 10px;
+    color: #01416d;
+}
+
+#policyResult.expired {
+    color: red;
 }
