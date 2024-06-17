@@ -517,8 +517,8 @@ function searchProfession() {
             }
 
             if (keywordsData[insuranceType].avoid) {
-                avoidDiv.innerHTML = `<h2>Indicators to AVOID, consider selecting ${insuranceType.toUpperCase()}</h2><ul>` + 
-                    keywordsData[insuranceType].avoid.map(keyword => `<li>${keyword}</li>`).join('') + 
+                avoidDiv.innerHTML = `<h2><b>Indicators to AVOID, consider selecting ${insuranceType.toUpperCase()}</b></h2><ul>` + 
+                    keywordsData[insuranceType].avoid.map(keyword => `<li class="avoid-item">${keyword}</li>`).join('') + 
                     `</ul>`;
             }
         }
