@@ -613,6 +613,7 @@ const professions = [
     { name: "Tunnel Construction", insurance: "Property and Casualty" },
 ];
 
+
 console.log(professions);
 
 // Function to find the best match for the user input using Fuse.js
@@ -626,33 +627,6 @@ function findBestMatch(input, professions) {
 
     return result.length ? result[0].item : { name: '', insurance: '' };
 }
-
-// Add event listener to the search box for suggestions
-document.getElementById('searchBox').addEventListener('input', function() {
-    const input = this.value.trim();
-    const options = {
-        keys: ['name'],
-        threshold: 0.3
-    };
-    const fuse = new Fuse(professions, options);
-    const results = fuse.search(input);
-
-    const suggestions = document.getElementById('suggestions');
-    suggestions.innerHTML = '';
-
-    if (input) {
-        results.forEach(result => {
-            const div = document.createElement('div');
-            div.textContent = result.item.name;
-            div.addEventListener('click', () => {
-                document.getElementById('searchBox').value = result.item.name;
-                suggestions.innerHTML = '';
-                document.getElementById('searchButton').click();
-            });
-            suggestions.appendChild(div);
-        });
-    }
-});
 
 // Adjust the search function
 document.getElementById('searchButton').addEventListener('click', function() {
@@ -683,35 +657,35 @@ function displayLists(insurance) {
         "Healthcare": ["Acupuncture", "Audiologists", "Beauticians/ Beauty salons", "Chiropractors", "Clinics", "Dieticians", "Drug Distribution", "ePharmacy", "Facial", "General Practice", "Gyms", "Health Screening", "Healthcare Consultants", "Home Healthcare", "Hospices", "Massage", "Medical", "Medical Practitioners", "Medical Schools", "Medical Staffing", "Medical Testing Labs", "Nails", "Nursing", "Nursing homes", "Nutritional Consulting", "Ophthalmology", "Opticians", "Pharmacy", "Pharmacists", "Phlebotomists", "Podiatry", "Psychologists", "Rehab Units", "Remote Patient Monitoring", "Speech Therapy", "Sports Injury", "STI Clinics and Health Centres", "Tanning", "Telemedicine", "Vets", "Wellness", "Anaesthetist", "Cardiologist", "Cardiothoracic Surgeon", "Dermatologist", "Endocrinologist", "Gastroenterologist", "Gynaecologist", "Maxillofacial Surgeon", "Neurologist", "Oncologist", "Ophthalmologist", "Orthopaedic Surgeon", "Otolaryngologist", "Plastic Surgeon", "Psychiatrist", "Radiologist", "Rheumatologist", "Urologist", "Vascular Surgeon"],
         "Management Liability": ["Crime", "Directors & Officers (D&O)", "Fiduciary"],
         "Media": ["Advertising Agency", "Artist", "Author", "Blogger / Vlogger", "Broadcaster", "Communication Consultants", "Digital Marketing", "Event organisers", "Film and TV Distributor", "Film and TV Production", "Magazine, Book, Newspaper Publishers", "Marketing", "Marketing and PR Companies", "Marketing Consultants", "Multimedia Companies", "Music Producers / Publishers / Composers / Songwriters", "New Media / digital agencies", "Photographers", "PR Consultants", "Press agencies", "Producers (TV, Film, Commercials)", "Public Relations", "Radio Stations", "Social Media Agencies"],
-        "Professions": ["Agricultural consultants", "Business consultants", "Captives", "Civil Engineers", "Commercial lines insurance", "Conservation managers", "Construction", "Conveyancers", "Data processors", "Directional drillers", "Drilling consultants", "Driving / Haulage", "Education", "Electrical Engineers", "Engineering and technical", "Environmental Engineers", "Environmental consultants", "Estate agents (residential and commercial)", "Expert witnesses", "Feasibility studies", "Financial services", "Fire consultants", "Food consultants", "Foreclosure agents", "Geologists", "Geotechnical engineers", "Health and safelty consultants", "Hospitality", "HR consultants", "HVAC engineers", "Hydraulic / fire engineers", "Interim Management", "Interior designers", "Investigators", "IT / Telecommunications", "Land brokers", "Land surveyors", "Landscape architects", "Management consultants", "Mechanical engineers", "Other professional services", "Personal lines", "Project managers", "Property developers", "Property leasing firms", "Property management companies", "Property management firms", "Property surveyors", "Quality assurance consultants", "Quarterly surveyors", "Recruitment", "Risk retention groups", "Staffing", "Structural architects / engineers / surveyors", "Town planning engineers", "Training companies"],
+        "Professions": ["Agricultural consultants", "Business consultants", "Captives", "Civil Engineers", "Commercial lines insurance", "Conservation managers", "Construction", "Conveyancers", "Data processors", "Directional drillers", "Drilling consultants", "Driving / Haulage", "Education", "Electrical Engineers", "Engineering and technical", "Environmental Engineers", "Environmental consultants", "Estate agents (residential and commercial)", "Expert witnesses", "Feasibility studies", "Financial services", "Fire consultants", "Food consultants", "Foreclosure agents", "Geologists", "Geotechnical engineers", "Health and safety consultants", "Hospitality", "HR consultants", "HVAC engineers", "Hydraulic / fire engineers", "Interim Management", "Interior designers", "Investigators", "IT / Telecommunications", "Land brokers", "Land surveyors", "Landscape architects", "Management consultants", "Mechanical engineers", "Other professional services", "Personal lines", "Project managers", "Property developers", "Property leasing firms", "Property management companies", "Property management firms", "Property surveyors", "Quality assurance consultants", "Quarterly surveyors", "Recruitment", "Risk retention groups", "Staffing", "Structural architects / engineers / surveyors", "Town planning engineers", "Training companies"],
         "Tech": ["App developers", "Application service providers", "Bespoke software developers", "Business networking websites", "Computer games developers", "Corporate blogs", "Digital Marketing agencies", "Domain name registration (resellers)", "Educational games", "Email providers", "Encryption software providers", "Genealogy websites", "Hardware value added resellers", "Instant messaging applications", "Internet radio websites", "IT consultancy", "IT security consultants", "IT support and training", "Mobile content providers", "Mobile phone content developers", "Networking engineers", "Online dating agencies", "Online gaming providers", "Online games developers and publishers", "Online listings sites", "Packaged software developers", "Photo sharing websites", "Social networking websites", "Software value added resellers", "System integrators", "User-generated content sites", "Video sharing websites", "Web designers", "Web hosting (Reselling)", "Web-based communities", "Web-casters", "Web service providers"]
     };
 
     const avoidIndicators = {
-        "Healthcare": ["Allied Health", "Ambulance", "Assisted Living", "Blood collection", "Clinic", "Drug distribution", "eHealth", "Facial", "Fitness", "General Practice", "Home Healthcare", "Massage", "Medical", "Medical practitioners", "Medical Staffing", "Nails", "Nursing", "Nursing homes", "Nutrition", "Ophthalmology", "Pharmacy", "Podiatry"],
+        "Property and Casualty": ["Restaurant", "Leisure center", "Gym", "Cafe"],
+        "Healthcare": ["Allied Health", "Ambulance", "Assisted Living", "Blood collection", "Clinic", "Drug distribution", "Health", "Facial", "Fitness", "General Practice", "Home Healthcare", "Massage", "Medical", "Medical practitioners", "Medical Staffing", "Nails", "Nursing", "Nursing homes", "Nutrition", "Ophthalmology", "Pharmacy", "Podiatry"],
         "Life Sciences": ["Animal Products", "Bio", "Biotics", "Blood bank", "Cannabis", "CBD", "Clinical Trials", "Drugs", "Hemp", "Laboratories", "Medical Devices (MD)", "Nutra", "Pain Relief", "Patients", "Research and Development (R&D)", "Research Trials", "Stem cell bank", "Supplements (food, dietary)", "Therapeutic devices", "Vitamins"]
     };
 
-    const keywordsList = document.getElementById('keywordsList');
+    const keywordList = document.getElementById('keywordsList');
     const avoidList = document.getElementById('avoidList');
 
-    // Clear previous lists
-    keywordsList.innerHTML = '';
-    avoidList.innerHTML = '';
+    // Display keywords
+    keywordList.innerHTML = `<h3>${insurance} Keywords</h3><ul>` + (keywords[insurance] || []).map(keyword => `<li>${keyword}</li>`).join('') + `</ul>`;
 
-    // Populate the keywords list
-    if (keywords[insurance]) {
-        keywordsList.innerHTML = `<h3>Keywords</h3><ul>` + keywords[insurance].map(keyword => `<li>${keyword}</li>`).join('') + `</ul>`;
-    }
+    // Display avoid indicators only if applicable
+    if (avoidIndicators[insurance] && avoidIndicators[insurance].length > 0) {
+        let alternative = "";
+        if (insurance === "Property and Casualty") {
+            alternative = "LIFE SCIENCE";
+        } else if (insurance === "Healthcare") {
+            alternative = "HEALTHCARE";
+        } else if (insurance === "Life Sciences") {
+            alternative = "HEALTHCARE";
+        }
 
-    // Populate the avoid list
-    if (insurance === "Property and Casualty") {
-        avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting LIFE SCIENCE</h3><ul>` + avoidIndicators["Life Sciences"].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
-        avoidList.innerHTML += `<h3>Indicators to AVOID, consider selecting HEALTHCARE</h3><ul>` + avoidIndicators["Healthcare"].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
-    } else if (insurance === "Life Sciences") {
-        avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting HEALTHCARE</h3><ul>` + avoidIndicators["Healthcare"].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
-    } else if (insurance !== "Healthcare") {
-        const alternative = insurance === "Healthcare" ? "Life Sciences" : "Healthcare";
-        avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting ${alternative.toUpperCase()}</h3><ul>` + avoidIndicators[alternative].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
+        avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting ${alternative}</h3><ul>` + avoidIndicators[insurance].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
+    } else {
+        avoidList.innerHTML = '';
     }
 }
