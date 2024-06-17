@@ -615,6 +615,45 @@ const professions = [
 
 console.log(professions);
 
+pip install fuzzywuzzy
+
+// Import the fuzzywuzzy library
+const { fuzz } = require('fuzzywuzzy');
+
+// Function to find the best match for the user input
+function findBestMatch(input, professions) {
+    let bestMatch = { name: '', insurance: '' };
+    let highestScore = 0;
+
+    professions.forEach(profession => {
+        const score = fuzz.ratio(profession.name.toLowerCase(), input.toLowerCase());
+        if (score > highestScore) {
+            highestScore = score;
+            bestMatch = profession;
+        }
+    });
+
+    return bestMatch;
+}
+
+// Adjust the search function
+searchButton.addEventListener('click', function() {
+    const input = searchBox.value.trim();
+    const bestMatch = findBestMatch(input, professions);
+
+    if (bestMatch.name) {
+        resultBox.innerHTML = `Profession: ${bestMatch.name}<br>Insurance: ${bestMatch.insurance}`;
+    } else {
+        resultBox.innerHTML = 'Profession not found. Please try again.';
+    }
+
+    displayLists(bestMatch.insurance);
+});
+
+// Function to display the relevant lists based on the insurance type
+function displayLists(insurance) {
+    // Your existing code to display lists based on the insurance type
+}
 
 const keywordsData = {
     "Property & Casualty": {
@@ -998,3 +1037,5 @@ function searchProfession() {
         resultDiv.innerHTML = 'Profession not found. Please check your input and try again.';
     }
 }
+
+
