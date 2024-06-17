@@ -23,26 +23,29 @@ body {
 
 .main-container {
     display: flex;
+    justify-content: center;
     width: 100%;
-    max-width: 1200px;
     padding: 20px;
 }
 
 .sidebar {
-    width: 25%;
+    width: 250px;
     background-color: #fff;
     padding: 20px;
-    margin-right: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    margin-right: 20px;
 }
 
-.content-container {
-    width: 75%;
+.container {
+    max-width: 800px;
+    width: 100%;
     background-color: #fff;
     padding: 20px;
+    margin: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    flex-grow: 1;
 }
 
 h1, h2 {
@@ -76,7 +79,7 @@ button:hover {
     margin-top: 10px;
 }
 
-#resultBox {
+#resultBox, #policyResultBox {
     margin-top: 20px;
 }
 
