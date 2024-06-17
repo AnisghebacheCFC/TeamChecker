@@ -613,7 +613,6 @@ const professions = [
     { name: "Tunnel Construction", insurance: "Property and Casualty" },
 ];
 
-
 console.log(professions);
 
 // Function to find the best match for the user input using Fuse.js
@@ -663,6 +662,7 @@ function displayLists(insurance) {
 
     const avoidIndicators = {
         "Property and Casualty": ["Restaurant", "Leisure center", "Gym", "Cafe"],
+        "Healthcare": ["Allied Health", "Ambulance", "Assisted Living", "Blood collection", "Clinic", "Drug distribution", "Health", "Facial", "Fitness", "General Practice", "Home Healthcare", "Massage", "Medical", "Medical practitioners", "Medical Staffing", "Nails", "Nursing", "Nursing homes", "Nutrition", "Ophthalmology", "Pharmacy", "Podiatry"],
         "Life Sciences": ["Animal Products", "Bio", "Biotics", "Blood bank", "Cannabis", "CBD", "Clinical Trials", "Drugs", "Hemp", "Laboratories", "Medical Devices (MD)", "Nutra", "Pain Relief", "Patients", "Research and Development (R&D)", "Research Trials", "Stem cell bank", "Supplements (food, dietary)", "Therapeutic devices", "Vitamins"]
     };
 
@@ -677,14 +677,15 @@ function displayLists(insurance) {
         let alternative = "";
         if (insurance === "Property and Casualty") {
             avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting LIFE SCIENCE</h3><ul>` + avoidIndicators["Life Sciences"].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
-            avoidList.innerHTML += `<h3>Indicators to AVOID, consider selecting HEALTHCARE</h3><ul>` + avoidIndicators["Property and Casualty"].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
+            avoidList.innerHTML += `<h3>Indicators to AVOID, consider selecting HEALTHCARE</h3><ul>` + avoidIndicators["Healthcare"].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
         } else if (insurance === "Life Sciences") {
-            alternative = "HEALTHCARE";
-        }
-
-        if (alternative) {
+            avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting HEALTHCARE</h3><ul>` + avoidIndicators["Healthcare"].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
+        } else {
+            alternative = insurance === "Healthcare" ? "LIFE SCIENCE" : "HEALTHCARE";
             avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting ${alternative}</h3><ul>` + avoidIndicators[insurance].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
         }
+    } else if (insurance === "Healthcare") {
+        avoidList.innerHTML = `<h3>Indicators to AVOID, consider selecting LIFE SCIENCE</h3><ul>` + avoidIndicators["Life Sciences"].map(indicator => `<li>${indicator}</li>`).join('') + `</ul>`;
     } else {
         avoidList.innerHTML = '';
     }
