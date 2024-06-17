@@ -981,3 +981,14 @@ function displayLists(insurance) {
     }
 
 }
+function submitSuggestion() {
+    const suggestion = document.getElementById('activitySuggestion').value;
+    if (suggestion) {
+        const email = 'aghebache@cfc.com';
+        const subject = 'Activity Addition';
+        const body = `Suggestion: ${suggestion}`;
+        window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    } else {
+        alert('Please enter an activity suggestion.');
+    }
+}
