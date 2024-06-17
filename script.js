@@ -970,7 +970,7 @@ function displayLists(insurance) {
     }
 }
 
-// Event listener for the submit suggestion button
+// Add event listener to the suggestion submit button
 document.getElementById('submitSuggestionButton').addEventListener('click', function() {
     const suggestion = document.getElementById('suggestionBox').value.trim();
     if (suggestion) {
