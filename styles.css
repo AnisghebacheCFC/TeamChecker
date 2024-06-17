@@ -21,18 +21,31 @@ body {
     max-height: 50px;
 }
 
-.container {
-    max-width: 800px;
+.main-container {
+    display: flex;
     width: 100%;
-    background-color: #fff;
+    max-width: 1200px;
     padding: 20px;
-    margin: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    flex-grow: 1;
 }
 
-h1 {
+.sidebar {
+    width: 25%;
+    background-color: #fff;
+    padding: 20px;
+    margin-right: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.content-container {
+    width: 75%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1, h2 {
     color: #01416d;
     text-align: center;
 }
