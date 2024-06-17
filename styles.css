@@ -58,7 +58,14 @@ button:hover {
     background-color: #012d4a;
 }
 
-#resultBox, #keywordsList, #avoidList {
+#resultBox {
+    margin-top: 20px;
+}
+
+#keywordsList, #avoidList {
+    display: inline-block;
+    vertical-align: top;
+    width: 48%;
     margin-top: 20px;
 }
 
@@ -82,6 +89,7 @@ button:hover {
 }
 
 .suggest-activity-container {
+    max-width: 800px;
     width: 100%;
     background-color: #fff;
     padding: 20px;
