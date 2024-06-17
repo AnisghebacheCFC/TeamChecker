@@ -861,7 +861,6 @@ const professions = [
     { name: "Consumer Product Rental", insurance: "Professions" },
 ];
 
-
 console.log(professions);
 
 // Function to find the best match for the user input using Fuse.js
@@ -980,10 +979,54 @@ function displayLists(insurance) {
     }
 }
 
-// Add event listener to the suggestion submit button
-document.getElementById('submitSuggestionButton').addEventListener('click', function() {
-    const suggestion = document.getElementById('suggestionBox').value.trim();
-    if (suggestion) {
-        window.location.href = `mailto:aghebache@cfc.com?subject=Activity Addition&body=${encodeURIComponent(suggestion)}`;
+// Policy number check function
+function checkPolicyNumber(policyNumber) {
+    const policyResultBox = document.getElementById('policyResultBox');
+    policyResultBox.style.color = '';
+
+    if (policyNumber.startsWith('GL')) {
+        policyResultBox.textContent = 'Property and Casualty';
+    } else if (policyNumber.startsWith('CM')) {
+        policyResultBox.textContent = 'Crisis Management / Product Recall';
+    } else if (policyNumber.startsWith('ES')) {
+        policyResultBox.textContent = 'Cyber';
+    } else if (policyNumber.startsWith('FI')) {
+        policyResultBox.textContent = 'Financial Institutions';
+    } else if (policyNumber.startsWith('MS')) {
+        policyResultBox.textContent = 'Healthcare';
+    } else if (policyNumber.startsWith('IS')) {
+        policyResultBox.textContent = 'Intellectual Property';
+    } else if (policyNumber.startsWith('KR') || policyNumber.startsWith('MKR')) {
+        policyResultBox.textContent = 'Kidnap & Ransom';
+    } else if (policyNumber.startsWith('BS')) {
+        policyResultBox.textContent = 'Life Science';
+    } else if (policyNumber.startsWith('DO')) {
+        policyResultBox.textContent = 'Management Liability';
+    } else if (policyNumber.startsWith('TP')) {
+        policyResultBox.textContent = 'Transactional Liability';
+    } else if (policyNumber.startsWith('CFTPM')) {
+        policyResultBox.textContent = 'Terrorism';
+    } else if (policyNumber.startsWith('FI')) {
+        policyResultBox.textContent = 'FinTech';
     }
+
+    if (policyNumber.charAt(2) === 'J') {
+        policyResultBox.textContent = 'EXPIRED POLICY';
+        policyResultBox.style.color = 'red';
+    }
+
+    // Clear the result if input doesn't match any criteria
+    if (policyNumber === '' || policyNumber.length < 2 || !policyNumber.match(/^([A-Z]{2,5})/)) {
+        policyResultBox.textContent = '';
+    }
+}
+
+document.getElementById('checkPolicyButton').addEventListener('click', function() {
+    const policyNumber = document.getElementById('policyNumberBox').value.trim();
+    checkPolicyNumber(policyNumber);
+});
+
+document.getElementById('policyNumberBox').addEventListener('input', function() {
+    const policyNumber = this.value.trim();
+    checkPolicyNumber(policyNumber);
 });
