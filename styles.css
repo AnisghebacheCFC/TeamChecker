@@ -23,8 +23,9 @@ body {
     top: 10px;
 }
 
-.bug-report-icon img {
-    max-height: 30px;
+.bug-icon {
+    max-height: 50px;
+    height: auto;
     cursor: pointer;
 }
 
@@ -42,8 +43,22 @@ body {
     border-radius: 8px;
 }
 
+#policyContainer {
+    background-color: #149bd7;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#policyContainer h1 {
+    color: #fff;
+}
+
 h1 {
     color: #01416d;
+    text-align: center;
 }
 
 input[type="text"] {
@@ -74,13 +89,13 @@ button:hover {
 #keywordsList ul, #avoidList ul {
     list-style-type: none;
     padding: 0;
-    text-align: left;
+    text-align: left; /* Align list items to the left */
 }
 
 #keywordsList h3, #avoidList h3 {
     font-weight: bold;
     color: #01416d;
-    text-align: left;
+    text-align: left; /* Align headers to the left */
 }
 
 #avoidList h3 {
@@ -92,12 +107,26 @@ button:hover {
     margin-bottom: 5px;
 }
 
-#keywordsList, #avoidList {
-    display: inline-block;
-    vertical-align: top;
-    width: 45%;
+#listsWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+#policyResultBox {
+    display: none;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
 }
 
 #suggestions {
+    border: 1px solid #ddd;
+    max-height: 100px;
+    overflow-y: auto;
     width: calc(100% - 22px);
+    text-align: left;
+    margin-bottom: 10px;
 }
