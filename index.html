@@ -8,12 +8,12 @@
     <div class="header">
         <div class="bug-report-icon">
             <a href="mailto:aghebache@cfc.com?subject=Bug%20Report&body=Hello%20Anis,%20the%20bug%20is%20as%20follows:">
-                <img src="bug-icon.png" alt="Report a bug" title="Report a bug">
+                <img src="bug-icon.png" alt="Report a bug" title="Report a bug" class="bug-icon">
             </a>
         </div>
         <img src="cfc-logo.png" alt="CFC Underwriting Logo" class="logo">
     </div>
-    <div class="container">
+    <div id="policyContainer">
         <h1>Policy Number Check</h1>
         <input type="text" id="policyNumber" placeholder="Enter policy number">
         <div id="policyResultBox"></div>
@@ -21,12 +21,12 @@
     <div class="container">
         <h1>Insurance Team Search</h1>
         <input type="text" id="searchBox" placeholder="Enter an activity">
-        <div id="suggestions" style="border: 1px solid #ddd; max-height: 100px; overflow-y: auto;"></div>
+        <div id="suggestions"></div>
         <div class="center">
             <button id="searchButton">Search</button>
         </div>
         <div id="resultBox"></div>
-        <div class="lists-container">
+        <div id="listsWrapper">
             <div id="keywordsList" class="list"></div>
             <div id="avoidList" class="list"></div>
         </div>
