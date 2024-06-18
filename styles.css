@@ -74,11 +74,13 @@ button:hover {
 #keywordsList ul, #avoidList ul {
     list-style-type: none;
     padding: 0;
+    text-align: left;
 }
 
 #keywordsList h3, #avoidList h3 {
     font-weight: bold;
     color: #01416d;
+    text-align: left;
 }
 
 #avoidList h3 {
@@ -88,4 +90,14 @@ button:hover {
 #keywordsList li, #avoidList li {
     font-weight: bold;
     margin-bottom: 5px;
+}
+
+#keywordsList, #avoidList {
+    display: inline-block;
+    vertical-align: top;
+    width: 45%;
+}
+
+#suggestions {
+    width: calc(100% - 22px);
 }
