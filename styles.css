@@ -14,13 +14,25 @@ body {
     padding: 10px 0;
     display: flex;
     justify-content: center;
+    position: relative;
+}
+
+.bug-report-icon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.bug-report-icon img {
+    max-height: 30px;
+    cursor: pointer;
 }
 
 .logo {
     max-height: 50px;
 }
 
-.container, .policy-container {
+.container {
     max-width: 800px;
     width: 100%;
     background-color: #fff;
@@ -28,14 +40,6 @@ body {
     margin: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.policy-container {
-    background-color: #149bd7;
-    margin-top: 60px; /* Lower the container */
 }
 
 h1 {
@@ -70,49 +74,18 @@ button:hover {
 #keywordsList ul, #avoidList ul {
     list-style-type: none;
     padding: 0;
-    text-align: left;
 }
 
 #keywordsList h3, #avoidList h3 {
     font-weight: bold;
     color: #01416d;
-    text-align: left;
 }
 
 #avoidList h3 {
     color: red;
-    text-align: left;
 }
 
 #keywordsList li, #avoidList li {
     font-weight: bold;
     margin-bottom: 5px;
-}
-
-#policyResultBox {
-    margin-top: 10px;
-    display: none; /* Initially hidden */
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-weight: bold;
-}
-
-#suggestions {
-    width: calc(100% - 22px); /* Match the width of the search box */
-    text-align: left;
-}
-
-.lists-container {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
-
-.list {
-    width: 45%;
 }
