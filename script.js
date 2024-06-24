@@ -2208,7 +2208,7 @@ function findBestMatch(input, professions) {
 }
 
 // Add event listener to the search box for suggestions
-document.getElementById('searchBox').addEventListener('input', function() {
+document.getElementById('searchBox').addEventListener('input', function () {
     const input = this.value.trim();
     const options = {
         keys: ['name'],
@@ -2240,7 +2240,7 @@ document.getElementById('searchBox').addEventListener('input', function() {
 });
 
 // Add event listener for the enter key
-document.getElementById('searchBox').addEventListener('keydown', function(e) {
+document.getElementById('searchBox').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
         e.preventDefault(); // Prevent the default form submission behavior
         document.getElementById('searchButton').click();
@@ -2248,7 +2248,7 @@ document.getElementById('searchBox').addEventListener('keydown', function(e) {
 });
 
 // Adjust the search function
-document.getElementById('searchButton').addEventListener('click', function() {
+document.getElementById('searchButton').addEventListener('click', function () {
     const input = document.getElementById('searchBox').value.trim();
     const bestMatch = findBestMatch(input, professions);
 
@@ -2278,7 +2278,8 @@ function displayLists(insurance) {
         "Media": ["Advertising Agency", "Artist", "Author", "Blogger / Vlogger", "Broadcaster", "Communication Consultants", "Digital Marketing", "Event organisers", "Film and TV Distributor", "Film and TV Production", "Magazine, Book, Newspaper Publishers", "Marketing", "Marketing and PR Companies", "Marketing Consultants", "Multimedia Companies", "Music Producers / Publishers / Composers / Songwriters", "New Media / digital agencies", "Photographers", "PR Consultants", "Press agencies", "Producers (TV, Film, Commercials)", "Public Relations", "Radio Stations", "Social Media Agencies"],
         "Professions": ["Agricultural consultants", "Business consultants", "Captives", "Civil Engineers", "Commercial lines insurance", "Conservation managers", "Construction", "Conveyancers", "Data processors", "Directional drillers", "Drilling consultants", "Driving / Haulage", "Education", "Electrical Engineers", "Engineering and technical", "Environmental Engineers", "Environmental consultants", "Estate agents (residential and commercial)", "Expert witnesses", "Feasibility studies", "Financial services", "Fire consultants", "Food consultants", "Foreclosure agents", "Geologists", "Geotechnical engineers", "Health and safety consultants", "Hospitality", "HR consultants", "HVAC engineers", "Hydraulic / fire engineers", "Interim Management", "Interior designers", "Investigators", "IT / Telecommunications", "Land brokers", "Land surveyors", "Landscape architects", "Management consultants", "Mechanical engineers", "Other professional services", "Personal lines", "Project managers", "Property developers", "Property leasing firms", "Property management companies", "Property management firms", "Property surveyors", "Quality assurance consultants", "Quarterly surveyors", "Recruitment", "Risk retention groups", "Staffing", "Structural architects / engineers / surveyors", "Town planning engineers", "Training companies"],
         "Tech": ["App developers", "Application service providers", "Bespoke software developers", "Business networking websites", "Computer games developers", "Corporate blogs", "Digital Marketing agencies", "Domain name registration (resellers)", "Educational games", "Email providers", "Encryption software providers", "Genealogy websites", "Hardware value added resellers", "Instant messaging applications", "Internet radio websites", "IT consultancy", "IT security consultants", "IT support and training", "Mobile content providers", "Mobile phone content developers", "Networking engineers", "Online dating agencies", "Online gaming providers", "Online games developers and publishers", "Online listings sites", "Packaged software developers", "Photo sharing websites", "Social networking websites", "Software value added resellers", "System integrators", "User-generated content sites", "Video sharing websites", "Web designers", "Web hosting (Reselling)", "Web-based communities", "Web-casters", "Web service providers"],
-        "FinTech": ["Digital & mobile banking services", "Digital lending", "Investment platforms", "Money transfer / payment services"]
+        "FinTech": ["Digital & mobile banking services", "Digital lending", "Investment platforms", "Money transfer / payment services"],
+        "Life Sciences": ["Animal Products", "Bio", "Biotics", "Blood bank", "Cannabis", "CBD", "Clinical Trials", "Drugs", "Hemp", "Laboratories", "Medical Devices (MD)", "Nutra", "Pain Relief", "Patients", "Research and Development (R&D)", "Research Trials", "Stem cell bank", "Supplements (food, dietary)", "Therapeutic devices", "Vitamins"]
     };
 
     const avoidIndicators = {
@@ -2311,14 +2312,13 @@ function displayLists(insurance) {
     }
 }
 
-// Add event listener to the policy number input
-document.getElementById('policyNumber').addEventListener('input', function() {
+// Add event listener to the policy number input box
+document.getElementById('policyNumberInput').addEventListener('input', function () {
     const input = this.value.trim().toUpperCase();
     const policyResultBox = document.getElementById('policyResultBox');
+    let result = '';
 
-    if (input) {
-        let result = '';
-
+    if (input.length >= 2) {
         if (input.startsWith('GL')) {
             result = 'Property and Casualty';
         } else if (input.startsWith('CM')) {
