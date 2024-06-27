@@ -2388,6 +2388,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
 
         analyzeResult.innerHTML = `Category: ${category}<br>Keywords Found: ${foundKeywords.join(', ')}`;
+
+        // Create a box to display recognized keywords
+        let keywordsBox = document.createElement('div');
+        keywordsBox.style.border = '1px solid #ccc';
+        keywordsBox.style.padding = '10px';
+        keywordsBox.style.marginTop = '10px';
+        keywordsBox.style.backgroundColor = '#f9f9f9';
+        keywordsBox.innerHTML = `<strong>Recognized Keywords:</strong> ${foundKeywords.join(', ')}`;
+
+        // Append the keywords box to the analyzeResult
+        analyzeResult.appendChild(keywordsBox);
     });
 });
-
