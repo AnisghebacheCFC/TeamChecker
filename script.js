@@ -2363,6 +2363,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('analyzeButton').addEventListener('click', function() {
         const subject = document.getElementById('emailSubject').value.toLowerCase();
         const analyzeResult = document.getElementById('analyzeResult');
+        
+        // Clear previous results
+        analyzeResult.innerHTML = '';
 
         const keywords = {
             FinTech: ['fintech', 'blockchain', 'digital banking', 'mobile banking', 'investment platforms', 'money transfer', 'payment services', 'digital lending'],
@@ -2375,7 +2378,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             Professions: ['professional liability', 'errors and omissions', 'e&o', 'professional indemnity', 'malpractice', 'business protection', 'agricultural consultants', 'business consultants', 'captives', 'civil engineers', 'commercial lines insurance', 'conservation managers', 'construction', 'conveyancers', 'data processors', 'directional drillers', 'drilling consultants', 'driving', 'haulage', 'education', 'electrical engineers', 'engineering', 'technical', 'environmental engineers', 'environmental consultants', 'estate agents', 'expert witnesses', 'feasibility studies', 'financial services', 'fire consultants', 'food consultants', 'foreclosure agents', 'geologists', 'geotechnical engineers', 'health and safety consultants', 'hospitality', 'hr consultants', 'hvac engineers', 'hydraulic', 'fire engineers', 'interim management', 'interior designers', 'investigators', 'it', 'telecommunications', 'land brokers', 'land surveyors', 'landscape architects', 'management consultants', 'mechanical engineers', 'other professional services', 'personal lines', 'project managers', 'property developers', 'property leasing firms', 'property management companies', 'property surveyors', 'quality assurance consultants', 'quarterly surveyors', 'recruitment', 'risk retention groups', 'staffing', 'structural architects', 'engineers', 'surveyors', 'town planning engineers', 'training companies']
         };
 
-        let category = 'Unknown';
+        let category = 'Nothing found';
         let foundKeywords = [];
 
         for (let key in keywords) {
@@ -2387,17 +2390,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
         }
 
-        analyzeResult.innerHTML = `Category: ${category}<br>Keywords Found: ${foundKeywords.join(', ')}`;
+        analyzeResult.innerHTML = `Category: ${category}<br>Keywords Found: ${foundKeywords.length > 0 ? foundKeywords.join(', ') : 'None'}`;
 
-        // Create a box to display recognized keywords
-        let keywordsBox = document.createElement('div');
-        keywordsBox.style.border = '1px solid #ccc';
-        keywordsBox.style.padding = '10px';
-        keywordsBox.style.marginTop = '10px';
-        keywordsBox.style.backgroundColor = '#f9f9f9';
-        keywordsBox.innerHTML = `<strong>Recognized Keywords:</strong> ${foundKeywords.join(', ')}`;
+        // Create a box to display recognized keywords if any
+        if (foundKeywords.length > 0) {
+            let keywordsBox = document.createElement('div');
+            keywordsBox.style.border = '1px solid #ccc';
+            keywordsBox.style.padding = '10px';
+            keywordsBox.style.marginTop = '10px';
+            keywordsBox.style.backgroundColor = '#f9f9f9';
+            keywordsBox.innerHTML = `<strong>Recognized Keywords:</strong> ${foundKeywords.join(', ')}`;
 
-        // Append the keywords box to the analyzeResult
-        analyzeResult.appendChild(keywordsBox);
+            // Append the keywords box to the analyzeResult
+            analyzeResult.appendChild(keywordsBox);
+        }
     });
 });
+
