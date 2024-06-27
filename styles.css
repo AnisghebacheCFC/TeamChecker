@@ -134,3 +134,23 @@ button:hover {
     text-align: left;
     margin-bottom: 10px;
 }
+
+/* Existing styles */
+
+#analyzerContainer {
+    background-color: #e8f4fc;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#analyzerContainer h1 {
+    color: #01416d;
+}
+
+#analyzeResult {
+    margin-top: 20px;
+    font-weight: bold;
+}
