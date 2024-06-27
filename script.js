@@ -2312,6 +2312,36 @@ function displayLists(insurance) {
     }
 }
 
+document.getElementById('analyzeButton').addEventListener('click', function() {
+    const subject = document.getElementById('emailSubject').value.toLowerCase();
+    const analyzeResult = document.getElementById('analyzeResult');
+
+    const keywords = {
+        FinTech: ['fintech', 'blockchain', 'digital banking', 'mobile banking', 'investment platforms', 'money transfer', 'payment services'],
+        Cyber: ['cybersecurity', 'data breach', 'cyber risk', 'incident response', 'cyber liability', 'privacy protection'],
+        LifeSciences: ['biotech', 'pharma', 'clinical trials', 'medical device', 'biotechnology', 'animal products', 'bio', 'biotics', 'blood bank', 'cannabis', 'cbd', 'drugs', 'hemp', 'laboratories', 'medical devices', 'nutra', 'pain relief', 'patients', 'research and development', 'research trials', 'stem cell bank', 'supplements', 'therapeutic devices', 'vitamins'],
+        IntellectualProperty: ['ip protection', 'patent', 'trademark', 'intellectual property', 'ip infringement', 'ip defense'],
+        ManagementLiability: ['directors and officers', 'd&o', 'executive risk', 'fiduciary', 'leadership coverage', 'crime'],
+        Media: ['media liability', 'content protection', 'digital media', 'media risk', 'libel and slander'],
+        ProductRecall: ['recall insurance', 'product safety', 'consumer protection', 'recall risk', 'supply chain', 'contamination', 'brand protection', 'ancillary product recall costs'],
+        Professions: ['professional liability', 'errors and omissions', 'e&o', 'professional indemnity', 'malpractice', 'business protection', 'agricultural consultants', 'business consultants', 'captives', 'civil engineers', 'commercial lines insurance', 'conservation managers', 'construction', 'conveyancers', 'data processors', 'directional drillers', 'drilling consultants', 'driving', 'haulage', 'education', 'electrical engineers', 'engineering', 'technical', 'environmental engineers', 'environmental consultants', 'estate agents', 'expert witnesses', 'feasibility studies', 'financial services', 'fire consultants', 'food consultants', 'foreclosure agents', 'geologists', 'geotechnical engineers', 'health and safety consultants', 'hospitality', 'hr consultants', 'hvac engineers', 'hydraulic', 'fire engineers', 'interim management', 'interior designers', 'investigators', 'it', 'telecommunications', 'land brokers', 'land surveyors', 'landscape architects', 'management consultants', 'mechanical engineers', 'other professional services', 'personal lines', 'project managers', 'property developers', 'property leasing firms', 'property management companies', 'property surveyors', 'quality assurance consultants', 'quarterly surveyors', 'recruitment', 'risk retention groups', 'staffing', 'structural architects', 'engineers', 'surveyors', 'town planning engineers', 'training companies']
+    };
+
+    let category = 'Unknown';
+    let foundKeywords = [];
+
+    for (let key in keywords) {
+        keywords[key].forEach(keyword => {
+            if (subject.includes(keyword)) {
+                category = key;
+                foundKeywords.push(keyword);
+            }
+        });
+    }
+
+    analyzeResult.innerHTML = `Category: ${category}<br>Keywords Found: ${foundKeywords.join(', ')}`;
+});
+
 // Add event listener to the policy number input box
 document.getElementById('policyNumberInput').addEventListener('input', function () {
     const input = this.value.trim().toUpperCase();
