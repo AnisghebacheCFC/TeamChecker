@@ -57,9 +57,6 @@
                 subject = subject.replace(/\//g, ' or '); // Replace "/" with "or"
                 subject = subject.replace(/[^\w\s]/gi, ''); // Remove special characters
 
-                // Replace "something consultants" and "something consultant" with "consultant"
-                subject = subject.replace(/\b\w+\sconsultants?\b/g, 'consultant');
-
                 const analyzeResult = document.getElementById('analyzeResult');
 
                 // Clear previous results
@@ -101,7 +98,7 @@
                         'cpsia', 'fda', 'cpsc'
                     ],
                     Professions: [
-                        'professional liability', 'errors and omissions', 'eo', 'professional indemnity', 'malpractice', 'business protection', 'agricultural consultant', 'business consultant', 'captive', 'civil engineer', 'commercial lines insurance', 'conservation manager', 'construction', 'conveyancer', 'data processor', 'directional driller', 'drilling consultant', 'driving', 'haulage', 'education', 'electrical engineer', 'engineering', 'technical', 'environmental engineer', 'environmental consultant', 'estate agent', 'expert witness', 'feasibility studies', 'financial services', 'fire consultant', 'food consultant', 'foreclosure agent', 'geologist', 'geotechnical engineer', 'health and safety consultant', 'hospitality', 'hr consultant', 'hvac engineer', 'hydraulic', 'fire engineer', 'interim management', 'interior designer', 'investigator', 'it', 'telecommunications', 'land broker', 'land surveyor', 'landscape architect', 'management consultant', 'mechanical engineer', 'other professional services', 'personal lines', 'project manager', 'property developer', 'property leasing firm', 'property management companies', 'property surveyor', 'quality assurance consultant', 'quarterly surveyor', 'recruitment', 'risk retention groups', 'staffing', 'structural architect', 'engineer', 'surveyor', 'town planning engineer', 'training companies',
+                        'professional liability', 'errors and omissions', 'eo', 'professional indemnity', 'malpractice', 'business protection', 'agricultural consultants', 'business consultants', 'captives', 'civil engineers', 'commercial lines insurance', 'conservation managers', 'construction', 'conveyancers', 'data processors', 'directional drillers', 'drilling consultants', 'driving', 'haulage', 'education', 'electrical engineers', 'engineering', 'technical', 'environmental engineers', 'environmental consultants', 'estate agents', 'expert witnesses', 'feasibility studies', 'financial services', 'fire consultants', 'food consultants', 'foreclosure agents', 'geologists', 'geotechnical engineers', 'health and safety consultants', 'hospitality', 'hr consultants', 'hvac engineers', 'hydraulic', 'fire engineers', 'interim management', 'interior designers', 'investigators', 'it', 'telecommunications', 'land brokers', 'land surveyors', 'landscape architects', 'management consultants', 'mechanical engineers', 'other professional services', 'personal lines', 'project managers', 'property developers', 'property leasing firms', 'property management companies', 'property surveyors', 'quality assurance consultants', 'quarterly surveyors', 'recruitment', 'risk retention groups', 'staffing', 'structural architects', 'engineers', 'surveyors', 'town planning engineers', 'training companies',
                         'pli', 'iso', 'hvac', 'rrg'
                     ],
                     PropertyCasualty: [
@@ -187,16 +184,37 @@
                 let words = subject.split(/\s+/);
 
                 // Check each word using Fuse.js
-                words.forEach(word => {
-                    let result = fuse.search(word);
-                    if (result.length > 0) {
-                        let bestMatch = result[0].item;
-                        foundKeywords.add(bestMatch.word);
-                        if (bestMatch.category) {
-                            foundCategories.add(bestMatch.category);
+                for (let i = 0; i < words.length; i++) {
+                    let word = words[i];
+                    let nextWord = words[i + 1] || '';
+
+                    if (['consultant', 'consultancy', 'consultants'].includes(word)) {
+                        let previousWord = words[i - 1] || '';
+                        if (previousWord) {
+                            let result = fuse.search(previousWord);
+                            if (result.length > 0) {
+                                let bestMatch = result[0].item;
+                                foundKeywords.add(`${bestMatch.word} ${word}`);
+                                if (bestMatch.category) {
+                                    foundCategories.add(bestMatch.category);
+                                }
+                            } else {
+                                foundKeywords.add(word);
+                            }
+                        } else {
+                            foundKeywords.add(word);
+                        }
+                    } else {
+                        let result = fuse.search(word);
+                        if (result.length > 0) {
+                            let bestMatch = result[0].item;
+                            foundKeywords.add(bestMatch.word);
+                            if (bestMatch.category) {
+                                foundCategories.add(bestMatch.category);
+                            }
                         }
                     }
-                });
+                }
 
                 // Convert sets to arrays and remove duplicates of acronyms and full forms
                 let uniqueKeywords = Array.from(foundKeywords);
