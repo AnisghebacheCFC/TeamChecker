@@ -173,10 +173,10 @@
 
                 // Fuse.js options for fuzzy matching
                 const fuseOptions = {
-                    keys: ['word'],
-                    threshold: 0.2, // Adjust this value to control the strictness of the match
-                    distance: 100 // Adjust this value to control the match distance
-                };
+                keys: ['word'],
+                    threshold: 0.4, // Adjusted to be less strict
+                    distance: 50 // Adjusted to be less strict
+                    };
 
                 const fuse = new Fuse(combinedKeywords, fuseOptions);
 
