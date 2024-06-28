@@ -23,7 +23,7 @@
     
     <!-- New Email Subject Analyzer Section -->
     <div class="container" id="analyzerContainer">
-        <h1>Email Subject Analyzer (under construction)</h1>
+        <h1>Email Subject Analyzer (Under Construction)(</h1>
         <input type="text" id="emailSubject" placeholder="Enter email subject">
         <div class="center">
             <button id="analyzeButton">Analyze</button>
@@ -50,7 +50,13 @@
         const analyzeButton = document.getElementById('analyzeButton');
         if (analyzeButton) {
             analyzeButton.addEventListener('click', function() {
-                const subject = document.getElementById('emailSubject').value.toLowerCase();
+                let subject = document.getElementById('emailSubject').value.toLowerCase();
+
+                // Normalize subject
+                subject = subject.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Remove accents
+                subject = subject.replace(/\//g, ' or '); // Replace "/" with "or"
+                subject = subject.replace(/[^\w\s]/gi, ''); // Remove special characters
+
                 const analyzeResult = document.getElementById('analyzeResult');
 
                 // Clear previous results
@@ -100,12 +106,12 @@
                         'pc', 'bi', 'gl', 'wc', 'eil'
                     ],
                     Tech: [
-                        'tech insurance', 'innovation risk', 'cyber liability', 'technology errors and omissions', 'tech business protection', 'data breach coverage', 'app developers', 'application service providers', 'bespoke software developers', 'business networking websites', 'computer games developers', 'corporate blogs', 'digital marketing agencies', 'domain name registration', 'educational games', 'email providers', 'encryption software providers', 'genealogy websites', 'hardware value added resellers', 'instant messaging applications', 'internet radio websites', 'it consultancy', 'it security consultants', 'it support and training', 'mobile content providers', 'mobile phone content developers', 'networking engineers', 'online dating agencies', 'online gaming providers', 'online games developers and publishers', 'online listings sites', 'packaged software developers', 'photo sharing websites', 'social networking websites', 'software value added resellers', 'system integrators', 'user-generated content sites', 'video sharing websites', 'web designers', 'web hosting', 'web-based communities', 'web-casters', 'web service providers',
+                        'tech insurance', 'innovation risk', 'cyber liability', 'technology errors and omissions', 'tech business protection', 'data breach coverage', 'app developers', 'application service providers', 'bespoke software developers', 'business networking websites', 'computer games developers', 'corporate blogs', 'digital marketing agencies', 'domain name registration', 'educational games', 'email providers', 'encryption software providers', 'genealogy websites', 'hardware value added resellers', 'instant messaging applications', 'internet radio websites', 'it consultancy', 'it security consultants', 'it support and training', 'mobile content providers', 'mobile phone content developers', 'networking engineers', 'online dating agencies', 'online gaming providers', 'online games developers and publishers', 'online listings sites', 'packaged software developers', 'photo sharing websites', 'social networking websites', 'software value added resellers', 'system integr
+                        'system integrators', 'user-generated content sites', 'video sharing websites', 'web designers', 'web hosting', 'web-based communities', 'web-casters', 'web service providers',
                         'saas', 'iot', 'isp', 'ugc', 'var'
                     ],
                     Healthcare: [
-                         'medical malpractice', 'healthcare liability', 'patient safety', 'healthcare risk management', 'medical protection', 'health service insurance', 'allied health', 'ambulance', 'assisted living', 'blood collection', 'clinic', 'drug distribution', 'health', 'facial', 'fitness',
-                                                'fitness', 'general practice', 'home healthcare', 'massage', 'medical', 'medical practitioners', 'medical staffing', 'nails', 'nursing', 'nursing homes', 'nutrition', 'ophthalmology', 'pharmacy', 'podiatry',
+                        'medical malpractice', 'healthcare liability', 'patient safety', 'healthcare risk management', 'medical protection', 'health service insurance', 'allied health', 'ambulance', 'assisted living', 'blood collection', 'clinic', 'drug distribution', 'health', 'facial', 'fitness', 'general practice', 'home healthcare', 'massage', 'medical', 'medical practitioners', 'medical staffing', 'nails', 'nursing', 'nursing homes', 'nutrition', 'ophthalmology', 'pharmacy', 'podiatry',
                         'hipaa', 'hmo', 'ppo', 'ehr', 'gp', 'ah'
                     ]
                 };
@@ -215,4 +221,3 @@
     </script>
 </body>
 </html>
-
