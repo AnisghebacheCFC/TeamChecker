@@ -46,7 +46,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('analyzeButton').addEventListener('click', function() {
         const subject = document.getElementById('emailSubject').value.toLowerCase();
         const analyzeResult = document.getElementById('analyzeResult');
@@ -75,55 +75,58 @@
         };
 
         const abbreviations = {
-            do: 'Directors and Officers',
-            eo: 'Errors and Omissions',
-            aml: 'Anti-Money Laundering',
-            kyc: 'Know Your Customer',
-            api: 'Application Programming Interface',
-            psd2: 'Payment Services Directive 2',
-            p2p: 'Peer-to-Peer',
-            ai: 'Artificial Intelligence',
-            ip: 'Intellectual Property',
-            nda: 'Non-Disclosure Agreement',
-            tm: 'Trademark',
-            rd: 'Research and Development',
-            fda: 'Food and Drug Administration',
-            gmp: 'Good Manufacturing Practice',
-            cro: 'Clinical Research Organization',
-            ivd: 'In Vitro Diagnostic',
-            md: 'Medical Devices',
-            cbd: 'Cannabidiol',
-            nutra: 'Nutraceuticals',
-            epli: 'Employment Practices Liability Insurance',
-            erisa: 'Employee Retirement Income Security Act',
-            gdpr: 'General Data Protection Regulation',
-            dmca: 'Digital Millennium Copyright Act',
-            cpsia: 'Consumer Product Safety Improvement Act',
-            cpsc: 'Consumer Product Safety Commission',
-            pc: 'Property and Casualty',
-            bi: 'Business Interruption',
-            gl: 'General Liability',
-            wc: 'Workers\' Compensation',
-            eil: 'Environmental Impairment Liability',
-            saas: 'Software as a Service',
-            iot: 'Internet of Things',
-            isp: 'Internet Service Provider',
-            ugc: 'User-Generated Content',
-            var: 'Value Added Reseller',
-            hipaa: 'Health Insurance Portability and Accountability Act',
-            hmo: 'Health Maintenance Organization',
-            ppo: 'Preferred Provider Organization',
-            ehr: 'Electronic Health Records',
-            gp: 'General Practice',
-            ah: 'Allied Health'
+            'do': 'Directors and Officers',
+            'eo': 'Errors and Omissions',
+            'aml': 'Anti-Money Laundering',
+            'kyc': 'Know Your Customer',
+            'api': 'Application Programming Interface',
+            'psd2': 'Payment Services Directive 2',
+            'p2p': 'Peer-to-Peer',
+            'ai': 'Artificial Intelligence',
+            'ip': 'Intellectual Property',
+            'nda': 'Non-Disclosure Agreement',
+            'tm': 'Trademark',
+            'rd': 'Research and Development',
+            'fda': 'Food and Drug Administration',
+            'gmp': 'Good Manufacturing Practice',
+            'cro': 'Clinical Research Organization',
+            'ivd': 'In Vitro Diagnostic',
+            'md': 'Medical Devices',
+            'cbd': 'Cannabidiol',
+            'nutra': 'Nutraceuticals',
+            'epli': 'Employment Practices Liability Insurance',
+            'erisa': 'Employee Retirement Income Security Act',
+            'gdpr': 'General Data Protection Regulation',
+            'dmca': 'Digital Millennium Copyright Act',
+            'cpsia': 'Consumer Product Safety Improvement Act',
+            'cpsc': 'Consumer Product Safety Commission',
+            'pc': 'Property and Casualty',
+            'bi': 'Business Interruption',
+            'gl': 'General Liability',
+            'wc': 'Workers Compensation',
+            'eil': 'Environmental Impairment Liability',
+            'saas': 'Software as a Service',
+            'iot': 'Internet of Things',
+            'isp': 'Internet Service Provider',
+            'ugc': 'User-Generated Content',
+            'var': 'Value Added Reseller',
+            'hipaa': 'Health Insurance Portability and Accountability Act',
+            'hmo': 'Health Maintenance Organization',
+            'ppo': 'Preferred Provider Organization',
+            'ehr': 'Electronic Health Records',
+            'gp': 'General Practice',
+            'ah': 'Allied Health'
         };
 
         let category = 'Nothing found';
         let foundKeywords = [];
 
+        // Check for keywords and acronyms
         for (let key in keywords) {
             keywords[key].forEach(keyword => {
-                if (subject.includes(keyword)) {
+                const keywordNoAmpersand = keyword.replace(/&/g, ' ');
+                const regex = new RegExp(`\\b${keywordNoAmpersand}\\b`, 'i');
+                if (regex.test(subject)) {
                     category = key;
                     foundKeywords.push(keyword);
                 }
@@ -132,7 +135,8 @@
 
         // Check for abbreviations and add full form in brackets
         for (let abbr in abbreviations) {
-            if (subject.includes(abbr)) {
+            const regex = new RegExp(`\\b${abbr.replace(/&/g, '')}\\b`, 'i');
+            if (regex.test(subject)) {
                 foundKeywords.push(`${abbr.toUpperCase()} (${abbreviations[abbr]})`);
             }
         }
