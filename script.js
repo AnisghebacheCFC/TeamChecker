@@ -2411,8 +2411,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 'pc', 'bi', 'gl', 'wc', 'eil'
             ],
             Tech: [
-                'tech insurance', 'innovation risk', 'cyber liability', 'technology errors and omissions', 'tech business protection', 'data breach coverage', 'app developers', 'application service providers', 'bespoke software developers', 'business networking websites', 'computer games developers', 'corporate blogs', 'digital marketing agencies', 'domain name registration', 'educational games', 'email providers', 'encryption software providers', 'genealogy websites', 'hardware value added resellers', 'instant messaging applications', 'internet radio websites', 'it consultancy', 'it security consultants', 'it support and training', 'mobile content providers', 'mobile phone content developers', 'networking engineers', 'online dating agencies', 'online gaming providers', 'online games developers',
-                'online gaming providers', 'online games developers and publishers', 'online listings sites', 'packaged software developers', 'photo sharing websites', 'social networking websites', 'software value added resellers', 'system integrators', 'user-generated content sites', 'video sharing websites', 'web designers', 'web hosting', 'web-based communities', 'web-casters', 'web service providers',
+                'tech insurance', 'innovation risk', 'cyber liability', 'technology errors and omissions', 'tech business protection', 'data breach coverage', 'app developers', 'application service providers', 'bespoke software developers', 'business networking websites', 'computer games developers', 'corporate blogs', 'digital marketing agencies', 'domain name registration', 'educational games', 'email providers', 'encryption software providers', 'genealogy websites', 'hardware value added resellers', 'instant messaging applications', 'internet radio websites', 'it consultancy', 'it security consultants', 'it support and training', 'mobile content providers', 'mobile phone content developers', 'networking engineers', 'online dating agencies', 'online gaming providers', 'online games developers and publishers', 'online listings sites', 'packaged software developers', 'photo sharing websites', 'social networking websites', 'software value added resellers', 'system integrators', 'user-generated content sites', 'video sharing websites',
+                'video sharing websites', 'web designers', 'web hosting', 'web-based communities', 'web-casters', 'web service providers',
                 'saas', 'iot', 'isp', 'ugc', 'var'
             ],
             Healthcare: [
@@ -2522,5 +2522,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
         analyzeResult.innerHTML = `Categories: ${categoriesArray.length > 0 ? categoriesArray.join(', ') : 'None'}<br>Keywords Found: ${finalKeywords.length > 0 ? finalKeywords.join(', ') : 'None'}`;
     });
 });
-
-
