@@ -154,12 +154,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let foundCategories = new Set();
         let foundKeywords = new Set();
 
-        // Split subject into words
+        // Split subject into words and multi-word phrases
         let words = subject.split(/\W+/);
 
         // Check for abbreviations and add full form in brackets
         for (let abbr in abbreviations) {
-            let abbrRegex = new RegExp(`\\b${abbr}\\b`, 'gi');
+            let abbrRegex = new RegExp(`\\b${abbr.replace(/&/g, '')}\\b`, 'gi');
             words.forEach(word => {
                 if (abbrRegex.test(word)) {
                     foundKeywords.add(`${abbr.toUpperCase()} (${abbreviations[abbr]})`);
@@ -210,6 +210,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         analyzeResult.innerHTML = `Categories: ${categoriesArray.length > 0 ? categoriesArray.join(', ') : 'None'}<br>Keywords Found: ${finalKeywords.length > 0 ? finalKeywords.join(', ') : 'None'}`;
     });
 });
+
 
 
     </script>
