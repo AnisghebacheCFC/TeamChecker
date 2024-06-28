@@ -152,17 +152,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
         };
 
         let category = 'Nothing found';
-        let foundKeywords = [];
+        let foundKeywords = new Set();
 
         // Normalize abbreviations in the subject
         let normalizedSubject = subject.replace(/&/g, '').replace(/\s/g, '');
 
-        //
-// Check for abbreviations and add full form in brackets
+        // Check for abbreviations and add full form in brackets
         for (let abbr in abbreviations) {
-            let abbrRegex = new RegExp(`\\b${abbr}\\b`, 'gi');
+            let abbrRegex = new RegExp(`\\b${abbr.replace(/&/g, '')}\\b`, 'gi');
             if (abbrRegex.test(normalizedSubject)) {
-                foundKeywords.push(`${abbr.toUpperCase()} (${abbreviations[abbr]})`);
+                foundKeywords.add(`${abbr.toUpperCase()} (${abbreviations[abbr]})`);
             }
         }
 
@@ -172,14 +171,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 let keywordRegex = new RegExp(`\\b${keyword.replace(/&/g, '').replace(/\s/g, '')}\\b`, 'gi');
                 if (keywordRegex.test(normalizedSubject)) {
                     category = key;
-                    foundKeywords.push(keyword);
+                    foundKeywords.add(keyword);
                 }
             });
         }
 
-        analyzeResult.innerHTML = `Category: ${category}<br>Keywords Found: ${foundKeywords.length > 0 ? foundKeywords.join(', ') : 'None'}`;
+        // Convert set to array and remove duplicates of acronyms and full forms
+        let uniqueKeywords = Array.from(foundKeywords);
+        let finalKeywords = [];
+        uniqueKeywords.forEach((keyword, index) => {
+            let cleanKeyword = keyword.toLowerCase().replace(/[&\s]/g, '');
+            if (!uniqueKeywords.slice(index + 1).some(k => k.toLowerCase().replace(/[&\s]/g, '') === cleanKeyword)) {
+                finalKeywords.push(keyword);
+            }
+        });
+
+        analyzeResult.innerHTML = `Category: ${category}<br>Keywords Found: ${finalKeywords.length > 0 ? finalKeywords.join(', ') : 'None'}`;
     });
 });
+
 
     </script>
 </body>
