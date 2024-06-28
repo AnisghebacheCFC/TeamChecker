@@ -174,7 +174,8 @@
                 // Fuse.js options for fuzzy matching
                 const fuseOptions = {
                     keys: ['word'],
-                    threshold: 0.3, // Adjust this value to control the strictness of the match
+                    threshold: 0.2, // Adjust this value to control the strictness of the match
+                    distance: 100 // Adjust this value to control the match distance
                 };
 
                 const fuse = new Fuse(combinedKeywords, fuseOptions);
@@ -187,9 +188,12 @@
                     let result = fuse.search(word);
                     if (result.length > 0) {
                         let bestMatch = result[0].item;
-                        foundKeywords.add(bestMatch.word);
-                        if (bestMatch.category) {
-                            foundCategories.add(bestMatch.category);
+                        // Consider a match only if the similarity score is below a certain threshold
+                        if (result[0].score < 0.2) {
+                            foundKeywords.add(bestMatch.word);
+                            if (bestMatch.category) {
+                                foundCategories.add(bestMatch.category);
+                            }
                         }
                     }
                 });
