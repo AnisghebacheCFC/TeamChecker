@@ -151,17 +151,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
             ah: 'allied health'
         };
 
-        let category = 'Nothing found';
+        let foundCategories = new Set();
         let foundKeywords = new Set();
 
         // Normalize abbreviations in the subject
         let normalizedSubject = subject.replace(/&/g, '').replace(/\s/g, '');
 
-        // Check for abbreviations and add full form in brackets
+                // Check for abbreviations and add full form in brackets
         for (let abbr in abbreviations) {
             let abbrRegex = new RegExp(`\\b${abbr.replace(/&/g, '')}\\b`, 'gi');
             if (abbrRegex.test(normalizedSubject)) {
                 foundKeywords.add(`${abbr.toUpperCase()} (${abbreviations[abbr]})`);
+                // Identify the category of the abbreviation
+                for (let key in keywords) {
+                    if (keywords[key].includes(abbr)) {
+                        foundCategories.add(key);
+                    }
+                }
             }
         }
 
@@ -170,13 +176,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
             keywords[key].forEach(keyword => {
                 let keywordRegex = new RegExp(`\\b${keyword.replace(/&/g, '').replace(/\s/g, '')}\\b`, 'gi');
                 if (keywordRegex.test(normalizedSubject)) {
-                    category = key;
                     foundKeywords.add(keyword);
+                    foundCategories.add(key);
                 }
             });
         }
 
-        // Convert set to array and remove duplicates of acronyms and full forms
+        // Convert sets to arrays and remove duplicates of acronyms and full forms
         let uniqueKeywords = Array.from(foundKeywords);
         let finalKeywords = [];
         uniqueKeywords.forEach((keyword, index) => {
@@ -186,9 +192,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         });
 
-        analyzeResult.innerHTML = `Category: ${category}<br>Keywords Found: ${finalKeywords.length > 0 ? finalKeywords.join(', ') : 'None'}`;
+        let categoriesArray = Array.from(foundCategories);
+        analyzeResult.innerHTML = `Categories: ${categoriesArray.length > 0 ? categoriesArray.join(', ') : 'None'}<br>Keywords Found: ${finalKeywords.length > 0 ? finalKeywords.join(', ') : 'None'}`;
     });
 });
+   
+
 
 
     </script>
