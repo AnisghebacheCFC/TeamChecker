@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('analyzeButton').addEventListener('click', function() {
         const subject = document.getElementById('emailSubject').value.toLowerCase();
         const analyzeResult = document.getElementById('analyzeResult');
-        
+
         // Clear previous results
         analyzeResult.innerHTML = '';
 
@@ -75,88 +75,78 @@ document.addEventListener('DOMContentLoaded', (event) => {
         };
 
         const abbreviations = {
-            'do': 'Directors and Officers',
-            'eo': 'Errors and Omissions',
-            'aml': 'Anti-Money Laundering',
-            'kyc': 'Know Your Customer',
-            'api': 'Application Programming Interface',
-            'psd2': 'Payment Services Directive 2',
-            'p2p': 'Peer-to-Peer',
-            'ai': 'Artificial Intelligence',
-            'ip': 'Intellectual Property',
-            'nda': 'Non-Disclosure Agreement',
-            'tm': 'Trademark',
-            'rd': 'Research and Development',
-            'fda': 'Food and Drug Administration',
-            'gmp': 'Good Manufacturing Practice',
-            'cro': 'Clinical Research Organization',
-            'ivd': 'In Vitro Diagnostic',
-            'md': 'Medical Devices',
-            'cbd': 'Cannabidiol',
-            'nutra': 'Nutraceuticals',
-            'epli': 'Employment Practices Liability Insurance',
-            'erisa': 'Employee Retirement Income Security Act',
-            'gdpr': 'General Data Protection Regulation',
-            'dmca': 'Digital Millennium Copyright Act',
-            'cpsia': 'Consumer Product Safety Improvement Act',
-            'cpsc': 'Consumer Product Safety Commission',
-            'pc': 'Property and Casualty',
-            'bi': 'Business Interruption',
-            'gl': 'General Liability',
-            'wc': 'Workers Compensation',
-            'eil': 'Environmental Impairment Liability',
-            'saas': 'Software as a Service',
-            'iot': 'Internet of Things',
-            'isp': 'Internet Service Provider',
-            'ugc': 'User-Generated Content',
-            'var': 'Value Added Reseller',
-            'hipaa': 'Health Insurance Portability and Accountability Act',
-            'hmo': 'Health Maintenance Organization',
-            'ppo': 'Preferred Provider Organization',
-            'ehr': 'Electronic Health Records',
-            'gp': 'General Practice',
-            'ah': 'Allied Health'
+            do: 'directors and officers',
+            eo: 'errors and omissions',
+            aml: 'anti-money laundering',
+            kyc: 'know your customer',
+            api: 'application programming interface',
+            psd2: 'payment services directive 2',
+            p2p: 'peer-to-peer',
+            ai: 'artificial intelligence',
+            ip: 'intellectual property',
+            nda: 'non-disclosure agreement',
+            tm: 'trademark',
+            rd: 'research and development',
+            fda: 'food and drug administration',
+            gmp: 'good manufacturing practice',
+            cro: 'clinical research organization',
+            ivd: 'in vitro diagnostic',
+            md: 'medical devices',
+            cbd: 'cannabidiol',
+            nutra: 'nutraceuticals',
+            epli: 'employment practices liability insurance',
+            erisa: 'employee retirement income security act',
+            gdpr: 'general data protection regulation',
+            dmca: 'digital millennium copyright act',
+            cpsia: 'consumer product safety improvement act',
+            cpsc: 'consumer product safety commission',
+            pc: 'property and casualty',
+            bi: 'business interruption',
+            gl: 'general liability',
+            wc: 'workers compensation',
+            eil: 'environmental impairment liability',
+            saas: 'software as a service',
+            iot: 'internet of things',
+            isp: 'internet service provider',
+            ugc: 'user-generated content',
+            var: 'value added reseller',
+            hipaa: 'health insurance portability and accountability act',
+            hmo: 'health maintenance organization',
+            ppo: 'preferred provider organization',
+            ehr: 'electronic health records',
+            gp: 'general practice',
+            ah: 'allied health'
         };
 
         let category = 'Nothing found';
         let foundKeywords = [];
 
-        // Check for keywords and acronyms
+        // Normalize abbreviations in the subject
+        let normalizedSubject = subject.replace(/&/g, '').replace(/\s/g, '');
+
+        // Check for abbreviations and add full form in brackets
+        for (let abbr in abbreviations) {
+            let abbrRegex = new RegExp(`\\b${abbr}\\b`, 'gi');
+            if (abbrRegex.test(normalizedSubject)) {
+                foundKeywords.push(`${abbr.toUpperCase()} (${abbreviations[abbr]})`);
+            }
+        }
+
+        // Check for keywords
         for (let key in keywords) {
             keywords[key].forEach(keyword => {
-                const keywordNoAmpersand = keyword.replace(/&/g, ' ');
-                const regex = new RegExp(`\\b${keywordNoAmpersand}\\b`, 'i');
-                if (regex.test(subject)) {
+                let keywordRegex = new RegExp(`\\b${keyword.replace(/&/g, '').replace(/\s/g, '')}\\b`, 'gi');
+                if (keywordRegex.test(normalizedSubject)) {
                     category = key;
                     foundKeywords.push(keyword);
                 }
             });
         }
 
-        // Check for abbreviations and add full form in brackets
-        for (let abbr in abbreviations) {
-            const regex = new RegExp(`\\b${abbr.replace(/&/g, '')}\\b`, 'i');
-            if (regex.test(subject)) {
-                foundKeywords.push(`${abbr.toUpperCase()} (${abbreviations[abbr]})`);
-            }
-        }
+        analyzeResult.innerHTML = `Category: ${category}<br>Keywords Found: ${foundKeywords.length > 0 ? foundKeywords.join(', ') : 'None'}`;
+    });
+});
 
-        // Handle closest matches for misspellings
-        const options = {
-            includeScore: true,
-            threshold: 0.3,
-            keys: ['keywords']
-        };
-
-        const fuse = new Fuse(Object.entries(keywords).map(([category, keywords]) => ({ category, keywords: keywords.join(' ') })), options);
-        const result = fuse.search(subject);
-        if (result.length > 0 && foundKeywords.length === 0) {
-            category = result[0].item.category;
-            foundKeywords.push(result[0].item.keywords.split(' ')[0]); // Taking the first match
-        }
-                analyzeResult.innerHTML = `Category: ${category}<br>Keywords Found: ${foundKeywords.length > 0 ? foundKeywords.join(', ') : 'None'}`;
-            });
-        });
     </script>
 </body>
 </html>
