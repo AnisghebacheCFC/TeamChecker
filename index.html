@@ -23,7 +23,7 @@
     
     <!-- New Email Subject Analyzer Section -->
     <div class="container" id="analyzerContainer">
-        <h1>Email Subject Analyzer (Under Construction)2</h1>
+        <h1>Email Subject Analyzer 1.0</h1>
         <input type="text" id="emailSubject" placeholder="Enter email subject">
         <div class="center">
             <button id="analyzeButton">Analyze</button>
@@ -46,115 +46,173 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
     <script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    const analyzeButton = document.getElementById('analyzeButton');
-    if (analyzeButton) {
-        analyzeButton.addEventListener('click', function() {
-            let subject = document.getElementById('emailSubject').value.toLowerCase();
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const analyzeButton = document.getElementById('analyzeButton');
+        if (analyzeButton) {
+            analyzeButton.addEventListener('click', function() {
+                let subject = document.getElementById('emailSubject').value.toLowerCase();
 
-            // Normalize subject
-            subject = subject.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Remove accents
-            subject = subject.replace(/\//g, ' or '); // Replace "/" with "or"
-            subject = subject.replace(/[^\w\s]/gi, ''); // Remove special characters
+                // Normalize subject
+                subject = subject.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Remove accents
+                subject = subject.replace(/\//g, ' or '); // Replace "/" with "or"
+                subject = subject.replace(/[^\w\s]/gi, ''); // Remove special characters
 
-            const analyzeResult = document.getElementById('analyzeResult');
+                const analyzeResult = document.getElementById('analyzeResult');
 
-            // Clear previous results
-            analyzeResult.innerHTML = '';
+                // Clear previous results
+                analyzeResult.innerHTML = '';
 
-            // Reject if "bind" is included
-            if (subject.includes('bind')) {
-                analyzeResult.innerHTML = 'REJECT';
-                return;
-            }
+                // Reject if "bind" is included
+                if (subject.includes('bind')) {
+                    analyzeResult.innerHTML = 'REJECT';
+                    return;
+                }
 
-            const keywords = {
-                // Define your keywords as before
-            };
+                const keywords = {
+                    FinTech: [
+                        'fintech', 'blockchain', 'digital banking', 'mobile banking', 'investment platforms', 'money transfer', 'payment services', 'digital lending', 'fintech protection', 'digital risk', 'innovation insurance', 'cybersecurity for fintech', 'financial technology coverage', 'payment processing security', 'blockchain insurance', 
+                        'api', 'psd2', 'p2p', 'ai'
+                    ],
+                    Cyber: [
+                        'cybersecurity', 'data breach', 'cyber risk', 'incident response', 'cyber liability', 'privacy protection', 'cybersecurity', 'data breach protection', 'cyber risk management', 'incident response', 'cyber coverage', 'cyber threat mitigation', 'cyber resilience',
+                        'ddos', 'ransomware', 'mfa', 'pci dss'
+                    ],
+                    LifeSciences: [
+                        'biotech', 'pharma', 'clinical trials', 'medical device', 'biotechnology', 'animal products', 'bio', 'biotics', 'blood bank', 'cannabis', 'cbd', 'drugs', 'hemp', 'laboratories', 'medical devices', 'nutra', 'pain relief', 'patients', 'research and development', 'research trials', 'stem cell bank', 'supplements', 'therapeutic devices', 'vitamins', 'biotech insurance', 'pharma coverage', 'clinical trials protection', 'medical device liability', 'life sciences risk', 'health innovation protection', 'biotechnology security',
+                        'fda', 'gmp', 'cro', 'ivd', 'md', 'cbd', 'nutra'
+                    ],
+                    IntellectualProperty: [
+                        'ip protection', 'patent', 'trademark', 'intellectual property', 'ip infringement', 'ip defense', 'innovation safeguard', 'intellectual property risk',
+                        'ip', 'nda', 'tm', 'rd'
+                    ],
+                    ManagementLiability: [
+                        'directors and officers', 'd&o', 'executive risk', 'fiduciary', 'leadership coverage', 'crime', 'management protection', 'corporate governance', 'leadership coverage', 'fiduciary liability', 'employment practices liability',
+                        'epli', 'erisa', 'do', 'eo'
+                    ],
+                    Media: [
+                        'media liability', 'content protection', 'digital media', 'media risk', 'libel and slander', 'media risk management', 'libel and slander coverage',
+                        'gdpr', 'dmca'
+                    ],
+                    ProductRecall: [
+                        'recall insurance', 'product safety', 'consumer protection', 'recall risk', 'supply chain', 'contamination', 'brand protection', 'ancillary product recall costs', 'product recall',
+                        'cpsia', 'fda', 'cpsc'
+                    ],
+                    Professions: [
+                        'professional liability', 'errors and omissions', 'eo', 'professional indemnity', 'malpractice', 'business protection', 'agricultural consultants', 'business consultants', 'captives', 'civil engineers', 'commercial lines insurance', 'conservation managers', 'construction', 'conveyancers', 'data processors', 'directional drillers', 'drilling consultants', 'driving', 'haulage', 'education', 'electrical engineers', 'engineering', 'technical', 'environmental engineers', 'environmental consultants', 'estate agents', 'expert witnesses', 'feasibility studies', 'financial services', 'fire consultants', 'food consultants', 'foreclosure agents', 'geologists', 'geotechnical engineers', 'health and safety consultants', 'hospitality', 'hr consultants', 'hvac engineers', 'hydraulic', 'fire engineers', 'interim management', 'interior designers', 'investigators', 'it', 'telecommunications', 'land brokers', 'land surveyors', 'landscape architects', 'management consultants', 'mechanical engineers', 'other professional services', 'personal lines', 'project managers', 'property developers', 'property leasing firms', 'property management companies', 'property surveyors', 'quality assurance consultants', 'quarterly surveyors', 'recruitment', 'risk retention groups', 'staffing', 'structural architects', 'engineers', 'surveyors', 'town planning engineers', 'training companies',
+                        'pli', 'iso', 'hvac', 'rrg'
+                    ],
+                    PropertyCasualty: [
+                        'p&c insurance', 'property protection', 'casualty coverage', 'commercial property', 'liability insurance', 'risk transfer', 'business interruption coverage', 'building', 'combined liability', 'commercial combined', 'commercial property', 'construction', 'environmental impairment liability', 'location', 'office and retail premises', 'property managers', 'residential dwelling', 'specialist contractors', 'tourist attractions', 'amusement arcades', 'construction projects', 'general contractor', 'nightclubs and bars', 'standalone property cover',
+                        'pc', 'bi', 'gl', 'wc', 'eil'
+                    ],
+                    Tech: [
+                        'tech insurance', 'innovation risk', 'cyber liability', 'technology errors and omissions', 'tech business protection', 'data breach coverage', 'app developers', 'application service providers', 'bespoke software developers', 'business networking websites', 'computer games developers', 'corporate blogs', 'digital marketing agencies', 'domain name registration', 'educational games', 'email providers', 'encryption software providers', 'genealogy websites', 'hardware value added resellers', 'instant messaging applications', 'internet radio websites', 'it consultancy', 'it security consultants', 'it support and training', 'mobile content providers', 'mobile phone content developers', 'networking engineers', 'online dating agencies', 'online gaming providers', 'online games developers and publishers', 'online listings sites', 'packaged software developers', 'photo sharing websites', 'social networking websites', 'software value added resellers', 'system integrators', 'user-generated content sites', 'video sharing websites', 'web designers', 'web hosting', 'web-based communities', 'web-casters', 'web service providers',
+                        'saas', 'iot', 'isp', 'ugc', 'var'
+                    ],
+                    Healthcare: [
+                        'medical malpractice', 'healthcare liability', 'patient safety', 'healthcare risk management', 'medical protection', 'health service insurance', 'allied health', 'ambulance', 'assisted living', 'blood collection', 'clinic', 'drug distribution', 'health', 'facial', 'fitness', 'general practice', 'home healthcare', 'massage', 'medical', 'medical practitioners', 'medical staffing', 'nails', 'nursing', 'nursing homes', 'nutrition', 'ophthalmology', 'pharmacy', 'podiatry',
+                        'hipaa', 'hmo', 'ppo', 'ehr', 'gp', 'ah'
+                    ]
+                };
 
-            const abbreviations = {
-                // Define your abbreviations as before
-            };
+                const abbreviations = {
+                    do: 'directors and officers',
+                    eo: 'errors and omissions',
+                    aml: 'anti-money laundering',
+                    kyc: 'know your customer',
+                    api: 'application programming interface',
+                    psd2: 'payment services directive 2',
+                    p2p: 'peer-to-peer',
+                    ai: 'artificial intelligence',
+                    ip: 'intellectual property',
+                    nda: 'non-disclosure agreement',
+                    tm: 'trademark',
+                    rd: 'research and development',
+                    fda: 'food and drug administration',
+                    gmp: 'good manufacturing practice',
+                    cro: 'clinical research organization',
+                    ivd: 'in vitro diagnostic',
+                    md: 'medical devices',
+                    cbd: 'cannabidiol',
+                    nutra: 'nutraceuticals',
+                    epli: 'employment practices liability insurance',
+                    erisa: 'employee retirement income security act',
+                    gdpr: 'general data protection regulation',
+                    dmca: 'digital millennium copyright act',
+                    cpsia: 'consumer product safety improvement act',
+                    cpsc: 'consumer product safety commission',
+                    pc: 'property and casualty',
+                    bi: 'business interruption',
+                    gl: 'general liability',
+                    wc: 'workers compensation',
+                    eil: 'environmental impairment liability',
+                    saas: 'software as a service',
+                    iot: 'internet of things',
+                    isp: 'internet service provider',
+                    ugc: 'user-generated content',
+                    var: 'value added reseller',
+                    hipaa: 'health insurance portability and accountability act',
+                    hmo: 'health maintenance organization',
+                    ppo: 'preferred provider organization',
+                    ehr: 'electronic health records',
+                    gp: 'general practice',
+                    ah: 'allied health'
+                };
 
-            let foundCategories = new Set();
-            let foundKeywords = new Set();
+                let foundCategories = new Set();
+                let foundKeywords = new Set();
 
-            // Create a combined list of keywords and abbreviations for fuzzy searching
-            const combinedKeywords = [];
-            for (let category in keywords) {
-                combinedKeywords.push(...keywords[category].map(word => ({ word, category })));
-            }
-            const combinedAbbreviations = [];
-            for (let abbr in abbreviations) {
-                combinedAbbreviations.push({ word: abbr, category: abbreviations[abbr] });
-            }
+                // Create a combined list of keywords and abbreviations for fuzzy searching
+                const combinedKeywords = [];
+                for (let category in keywords) {
+                    combinedKeywords.push(...keywords[category].map(word => ({ word, category })));
+                }
+                for (let abbr in abbreviations) {
+                    combinedKeywords.push({ word: abbr, category: null });
+                }
 
-            // Fuse.js options for fuzzy matching (keywords)
-            const fuseOptionsKeywords = {
-                keys: ['word'],
-                threshold: 0.6, // Adjusted to be less strict
-                distance: 200 // Adjusted to be less strict
-            };
+                // Fuse.js options for fuzzy matching
+                const fuseOptions = {
+                    keys: ['word'],
+                    threshold: 0.3, // Adjust this value to control the strictness of the match
+                    distance: 100 // Adjust this value to control the match distance
+                };
 
-            // Fuse.js options for fuzzy matching (abbreviations)
-            const fuseOptionsAbbreviations = {
-                keys: ['word'],
-                threshold: 0.6, // Adjusted to be less strict
-                distance: 200 // Adjusted to be less strict
-            };
+                const fuse = new Fuse(combinedKeywords, fuseOptions);
 
-            const fuseKeywords = new Fuse(combinedKeywords, fuseOptionsKeywords);
-            const fuseAbbreviations = new Fuse(combinedAbbreviations, fuseOptionsAbbreviations);
+                // Normalize and split subject into words
+                let words = subject.split(/\s+/);
 
-            // Normalize and split subject into words
-            let words = subject.split(/\s+/);
-
-            // Check each word using Fuse.js for full keywords
-            words.forEach(word => {
-                let result = fuseKeywords.search(word);
-                if (result.length > 0) {
-                    let bestMatch = result[0].item;
-                    // Consider a match only if the similarity score is below a certain threshold
-                    if (result[0].score < 0.6) {
-                        foundKeywords.add(bestMatch.word);
-                        if (bestMatch.category) {
-                            foundCategories.add(bestMatch.category);
+                // Check each word using Fuse.js
+                words.forEach(word => {
+                    let result = fuse.search(word);
+                    if (result.length > 0) {
+                        let bestMatch = result[0].item;
+                        // Consider a match only if the similarity score is below a certain threshold
+                        if (result[0].score < 0.3) {
+                            foundKeywords.add(bestMatch.word);
+                            if (bestMatch.category) {
+                                foundCategories.add(bestMatch.category);
+                            }
                         }
                     }
-                }
-            });
+                });
 
-            // Check each word using Fuse.js for abbreviations
-            words.forEach(word => {
-                let result = fuseAbbreviations.search(word);
-                if (result.length > 0) {
-                    let bestMatch = result[0].item;
-                    // Consider a match only if the similarity score is below a certain threshold
-                    if (result[0].score < 0.6) {
-                        foundKeywords.add(bestMatch.word);
-                        if (bestMatch.category) {
-                            foundCategories.add(bestMatch.category);
-                        }
+                // Convert sets to arrays and remove duplicates of acronyms and full forms
+                let uniqueKeywords = Array.from(foundKeywords);
+                let finalKeywords = [];
+                uniqueKeywords.forEach((keyword, index) => {
+                    let cleanKeyword = keyword.toLowerCase().replace(/[&\s]/g, '');
+                    if (!uniqueKeywords.slice(index + 1).some(k => k.toLowerCase().replace(/[&\s]/g, '') === cleanKeyword)) {
+                        finalKeywords.push(keyword);
                     }
-                }
+                });
+
+                let categoriesArray = Array.from(foundCategories);
+                analyzeResult.innerHTML = `Categories: ${categoriesArray.length > 0 ? categoriesArray.join(', ') : 'None'}<br>Keywords Found: ${finalKeywords.length > 0 ? finalKeywords.join(', ') : 'None'}`;
             });
-
-            // Convert sets to arrays and remove duplicates of acronyms and full forms
-            let uniqueKeywords = Array.from(foundKeywords);
-            let finalKeywords = [];
-            uniqueKeywords.forEach((keyword, index) => {
-                let cleanKeyword = keyword.toLowerCase().replace(/[&\s]/g, '');
-                if (!uniqueKeywords.slice(index + 1).some(k => k.toLowerCase().replace(/[&\s]/g, '') === cleanKeyword)) {
-                    finalKeywords.push(keyword);
-                }
-            });
-
-            let categoriesArray = Array.from(foundCategories);
-            analyzeResult.innerHTML = `Categories: ${categoriesArray.length > 0 ? categoriesArray.join(', ') : 'None'}<br>Keywords Found: ${finalKeywords.length > 0 ? finalKeywords.join(', ') : 'None'}`;
-        });
-    }
-});
-
+        }
+    });
     </script>
 </body>
 </html>
