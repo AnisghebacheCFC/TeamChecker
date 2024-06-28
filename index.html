@@ -154,30 +154,44 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let foundCategories = new Set();
         let foundKeywords = new Set();
 
-        // Normalize abbreviations in the subject
-        let normalizedSubject = subject.replace(/&/g, '').replace(/\s/g, '');
+        // Split subject into words
+        let words = subject.split(/\W+/);
 
         // Check for abbreviations and add full form in brackets
         for (let abbr in abbreviations) {
             let abbrRegex = new RegExp(`\\b${abbr}\\b`, 'gi');
-            if (abbrRegex.test(normalizedSubject)) {
-                foundKeywords.add(`${abbr.toUpperCase()} (${abbreviations[abbr]})`);
-                // Identify the category of the abbreviation
-                for (let key in keywords) {
-                    if (keywords[key].includes(abbr) || keywords[key].includes(abbreviations[abbr])) {
-                        foundCategories.add(key);
+            words.forEach(word => {
+                if (abbrRegex.test(word)) {
+                    foundKeywords.add(`${abbr.toUpperCase()} (${abbreviations[abbr]})`);
+                    // Identify the category of the abbreviation
+                    for (let key in keywords) {
+                        if (keywords[key].includes(abbr) || keywords[key].includes(abbreviations[abbr])) {
+                            foundCategories.add(key);
+                        }
                     }
                 }
-            }
+            });
         }
 
         // Check for keywords
         for (let key in keywords) {
             keywords[key].forEach(keyword => {
-                let keywordRegex = new RegExp(`\\b${keyword.replace(/&/g, '').replace(/\s/g, '')}\\b`, 'gi');
-                if (keywordRegex.test(normalizedSubject)) {
-                    foundKeywords.add(keyword);
-                    foundCategories.add(key);
+                let keywordWords = keyword.split(' ');
+                if (keywordWords.length > 1) {
+                    // Check for multi-word keywords
+                    let keywordRegex = new RegExp(`\\b${keywordWords.join('\\b.*\\b')}\\b`, 'gi');
+                    if (keywordRegex.test(subject)) {
+                        foundKeywords.add(keyword);
+                        foundCategories.add(key);
+                    }
+                } else {
+                    // Check for single-word keywords
+                    words.forEach(word => {
+                        if (word === keyword.toLowerCase()) {
+                            foundKeywords.add(keyword);
+                            foundCategories.add(key);
+                        }
+                    });
                 }
             });
         }
@@ -196,8 +210,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         analyzeResult.innerHTML = `Categories: ${categoriesArray.length > 0 ? categoriesArray.join(', ') : 'None'}<br>Keywords Found: ${finalKeywords.length > 0 ? finalKeywords.join(', ') : 'None'}`;
     });
 });
-   
-
 
 
     </script>
