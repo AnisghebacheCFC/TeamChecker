@@ -23,7 +23,7 @@
     
     <!-- New Email Subject Analyzer Section -->
     <div class="container" id="analyzerContainer">
-        <h1>Email Subject Analyzer 1.0</h1>
+        <h1>Email Subject Analyzer</h1>
         <input type="text" id="emailSubject" placeholder="Enter email subject">
         <div class="center">
             <button id="analyzeButton">Analyze</button>
@@ -174,8 +174,8 @@
                 // Fuse.js options for fuzzy matching
                 const fuseOptions = {
                     keys: ['word'],
-                    threshold: 0.3, // Adjust this value to control the strictness of the match
-                    distance: 100 // Adjust this value to control the match distance
+                    threshold: 0.2, // Make the match stricter
+                    distance: 50 // Controls the distance allowed between search terms
                 };
 
                 const fuse = new Fuse(combinedKeywords, fuseOptions);
@@ -188,12 +188,9 @@
                     let result = fuse.search(word);
                     if (result.length > 0) {
                         let bestMatch = result[0].item;
-                        // Consider a match only if the similarity score is below a certain threshold
-                        if (result[0].score < 0.3) {
-                            foundKeywords.add(bestMatch.word);
-                            if (bestMatch.category) {
-                                foundCategories.add(bestMatch.category);
-                            }
+                        foundKeywords.add(bestMatch.word);
+                        if (bestMatch.category) {
+                            foundCategories.add(bestMatch.category);
                         }
                     }
                 });
