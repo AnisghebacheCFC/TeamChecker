@@ -157,14 +157,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Normalize abbreviations in the subject
         let normalizedSubject = subject.replace(/&/g, '').replace(/\s/g, '');
 
-                // Check for abbreviations and add full form in brackets
+        // Check for abbreviations and add full form in brackets
         for (let abbr in abbreviations) {
-            let abbrRegex = new RegExp(`\\b${abbr.replace(/&/g, '')}\\b`, 'gi');
+            let abbrRegex = new RegExp(`\\b${abbr}\\b`, 'gi');
             if (abbrRegex.test(normalizedSubject)) {
                 foundKeywords.add(`${abbr.toUpperCase()} (${abbreviations[abbr]})`);
                 // Identify the category of the abbreviation
                 for (let key in keywords) {
-                    if (keywords[key].includes(abbr)) {
+                    if (keywords[key].includes(abbr) || keywords[key].includes(abbreviations[abbr])) {
                         foundCategories.add(key);
                     }
                 }
