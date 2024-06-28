@@ -23,7 +23,7 @@
     
     <!-- New Email Subject Analyzer Section -->
     <div class="container" id="analyzerContainer">
-        <h1>Email Subject Analyzer (Under Construction)</h1>
+        <h1>Email Subject Analyzer (Under Construction)2</h1>
         <input type="text" id="emailSubject" placeholder="Enter email subject">
         <div class="center">
             <button id="analyzeButton">Analyze</button>
@@ -189,7 +189,7 @@
                     if (result.length > 0) {
                         let bestMatch = result[0].item;
                         // Consider a match only if the similarity score is below a certain threshold
-                        if (result[0].score < 0.2) {
+                        if (result[0].score < 0.4) {
                             foundKeywords.add(bestMatch.word);
                             if (bestMatch.category) {
                                 foundCategories.add(bestMatch.category);
