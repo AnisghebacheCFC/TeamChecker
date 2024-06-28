@@ -47,36 +47,109 @@
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-            document.getElementById('analyzeButton').addEventListener('click', function() {
-                const subject = document.getElementById('emailSubject').value.toLowerCase();
-                const analyzeResult = document.getElementById('analyzeResult');
-                
-                // Clear previous results
-                analyzeResult.innerHTML = '';
+    document.getElementById('analyzeButton').addEventListener('click', function() {
+        const subject = document.getElementById('emailSubject').value.toLowerCase();
+        const analyzeResult = document.getElementById('analyzeResult');
+        
+        // Clear previous results
+        analyzeResult.innerHTML = '';
 
-                const keywords = {
-                    FinTech: ['fintech', 'blockchain', 'digital banking', 'mobile banking', 'investment platforms', 'money transfer', 'payment services', 'digital lending'],
-                    Cyber: ['cybersecurity', 'data breach', 'cyber risk', 'incident response', 'cyber liability', 'privacy protection'],
-                    LifeSciences: ['biotech', 'pharma', 'clinical trials', 'medical device', 'biotechnology', 'animal products', 'bio', 'biotics', 'blood bank', 'cannabis', 'cbd', 'drugs', 'hemp', 'laboratories', 'medical devices', 'nutra', 'pain relief', 'patients', 'research and development', 'research trials', 'stem cell bank', 'supplements', 'therapeutic devices', 'vitamins'],
-                    IntellectualProperty: ['ip protection', 'patent', 'trademark', 'intellectual property', 'ip infringement', 'ip defense'],
-                    ManagementLiability: ['directors and officers', 'd&o', 'executive risk', 'fiduciary', 'leadership coverage', 'crime'],
-                    Media: ['media liability', 'content protection', 'digital media', 'media risk', 'libel and slander'],
-                    ProductRecall: ['recall insurance', 'product safety', 'consumer protection', 'recall risk', 'supply chain', 'contamination', 'brand protection', 'ancillary product recall costs', 'product recall'],
-                    Professions: ['professional liability', 'errors and omissions', 'e&o', 'professional indemnity', 'malpractice', 'business protection', 'agricultural consultants', 'business consultants', 'captives', 'civil engineers', 'commercial lines insurance', 'conservation managers', 'construction', 'conveyancers', 'data processors', 'directional drillers', 'drilling consultants', 'driving', 'haulage', 'education', 'electrical engineers', 'engineering', 'technical', 'environmental engineers', 'environmental consultants', 'estate agents', 'expert witnesses', 'feasibility studies', 'financial services', 'fire consultants', 'food consultants', 'foreclosure agents', 'geologists', 'geotechnical engineers', 'health and safety consultants', 'hospitality', 'hr consultants', 'hvac engineers', 'hydraulic', 'fire engineers', 'interim management', 'interior designers', 'investigators', 'it', 'telecommunications', 'land brokers', 'land surveyors', 'landscape architects', 'management consultants', 'mechanical engineers', 'other professional services', 'personal lines', 'project managers', 'property developers', 'property leasing firms', 'property management companies', 'property surveyors', 'quality assurance consultants', 'quarterly surveyors', 'recruitment', 'risk retention groups', 'staffing', 'structural architects', 'engineers', 'surveyors', 'town planning engineers', 'training companies']
-                };
+        // Reject if "bind" is included
+        if (subject.includes('bind')) {
+            analyzeResult.innerHTML = 'REJECT';
+            return;
+        }
 
-                let category = 'Nothing found';
-                let foundKeywords = [];
+        const keywords = {
+            FinTech: ['fintech', 'blockchain', 'digital banking', 'mobile banking', 'investment platforms', 'money transfer', 'payment services', 'digital lending', 'fintech protection', 'digital risk', 'innovation insurance', 'cybersecurity for fintech', 'financial technology coverage', 'payment processing security', 'blockchain insurance'],
+            Cyber: ['cybersecurity', 'data breach', 'cyber risk', 'incident response', 'cyber liability', 'privacy protection', 'cybersecurity', 'data breach protection', 'cyber risk management', 'incident response', 'cyber coverage', 'cyber threat mitigation', 'cyber resilience'],
+            LifeSciences: ['biotech', 'pharma', 'clinical trials', 'medical device', 'biotechnology', 'animal products', 'bio', 'biotics', 'blood bank', 'cannabis', 'cbd', 'drugs', 'hemp', 'laboratories', 'medical devices', 'nutra', 'pain relief', 'patients', 'research and development', 'research trials', 'stem cell bank', 'supplements', 'therapeutic devices', 'vitamins', 'biotech insurance', 'pharma coverage', 'clinical trials protection', 'medical device liability', 'life sciences risk', 'health innovation protection', 'biotechnology security'],
+            IntellectualProperty: ['ip protection', 'patent', 'trademark', 'intellectual property', 'ip infringement', 'ip defense', 'innovation safeguard', 'intellectual property risk'],
+            ManagementLiability: ['directors and officers', 'd&o', 'executive risk', 'fiduciary', 'leadership coverage', 'crime', 'management protection', 'corporate governance', 'leadership coverage', 'fiduciary liability', 'employment practices liability'],
+            Media: ['media liability', 'content protection', 'digital media', 'media risk', 'libel and slander', 'media risk management', 'libel and slander coverage'],
+            ProductRecall: ['recall insurance', 'product safety', 'consumer protection', 'recall risk', 'supply chain', 'contamination', 'brand protection', 'ancillary product recall costs', 'product recall'],
+            Professions: ['professional liability', 'errors and omissions', 'e&o', 'professional indemnity', 'malpractice', 'business protection', 'agricultural consultants', 'business consultants', 'captives', 'civil engineers', 'commercial lines insurance', 'conservation managers', 'construction', 'conveyancers', 'data processors', 'directional drillers', 'drilling consultants', 'driving', 'haulage', 'education', 'electrical engineers', 'engineering', 'technical', 'environmental engineers', 'environmental consultants', 'estate agents', 'expert witnesses', 'feasibility studies', 'financial services', 'fire consultants', 'food consultants', 'foreclosure agents', 'geologists', 'geotechnical engineers', 'health and safety consultants', 'hospitality', 'hr consultants', 'hvac engineers', 'hydraulic', 'fire engineers', 'interim management', 'interior designers', 'investigators', 'it', 'telecommunications', 'land brokers', 'land surveyors', 'landscape architects', 'management consultants', 'mechanical engineers', 'other professional services', 'personal lines', 'project managers', 'property developers', 'property leasing firms', 'property management companies', 'property surveyors', 'quality assurance consultants', 'quarterly surveyors', 'recruitment', 'risk retention groups', 'staffing', 'structural architects', 'engineers', 'surveyors', 'town planning engineers', 'training companies'],
+            PropertyCasualty: ['p&c insurance', 'property protection', 'casualty coverage', 'commercial property', 'liability insurance', 'risk transfer', 'business interruption coverage', 'building', 'combined liability', 'commercial combined', 'commercial property', 'construction', 'environmental impairment liability', 'location', 'office and retail premises', 'property managers', 'residential dwelling', 'specialist contractors', 'tourist attractions', 'amusement arcades', 'construction projects', 'general contractor', 'nightclubs and bars', 'standalone property cover'],
+            Tech: ['tech insurance', 'innovation risk', 'cyber liability', 'technology errors and omissions', 'tech business protection', 'data breach coverage', 'app developers', 'application service providers', 'bespoke software developers', 'business networking websites', 'computer games developers', 'corporate blogs', 'digital marketing agencies', 'domain name registration', 'educational games', 'email providers', 'encryption software providers', 'genealogy websites', 'hardware value added resellers', 'instant messaging applications', 'internet radio websites', 'it consultancy', 'it security consultants', 'it support and training', 'mobile content providers', 'mobile phone content developers', 'networking engineers', 'online dating agencies', 'online gaming providers', 'online games developers and publishers', 'online listings sites', 'packaged software developers', 'photo sharing websites', 'social networking websites', 'software value added resellers', 'system integrators', 'user-generated content sites', 'video sharing websites', 'web designers', 'web hosting', 'web-based communities', 'web-casters', 'web service providers'],
+            Healthcare: ['medical malpractice', 'healthcare liability', 'patient safety', 'healthcare risk management', 'medical protection', 'health service insurance', 'allied health', 'ambulance', 'assisted living', 'blood collection', 'clinic', 'drug distribution', 'health', 'facial', 'fitness', 'general practice', 'home healthcare', 'massage', 'medical', 'medical practitioners', 'medical staffing', 'nails', 'nursing', 'nursing homes', 'nutrition', 'ophthalmology', 'pharmacy', 'podiatry']
+        };
 
-                for (let key in keywords) {
-                    keywords[key].forEach(keyword => {
-                        if (subject.includes(keyword)) {
-                            category = key;
-                            foundKeywords.push(keyword);
-                        }
-                    });
+        const abbreviations = {
+            d&o: 'Directors and Officers',
+            e&o: 'Errors and Omissions',
+            aml: 'Anti-Money Laundering',
+            kyc: 'Know Your Customer',
+            api: 'Application Programming Interface',
+            psd2: 'Payment Services Directive 2',
+            p2p: 'Peer-to-Peer',
+            ai: 'Artificial Intelligence',
+            ip: 'Intellectual Property',
+            nda: 'Non-Disclosure Agreement',
+            tm: 'Trademark',
+            r&d: 'Research and Development',
+            fda: 'Food and Drug Administration',
+            gmp: 'Good Manufacturing Practice',
+            cro: 'Clinical Research Organization',
+            ivd: 'In Vitro Diagnostic',
+            md: 'Medical Devices',
+            cbd: 'Cannabidiol',
+            nutra: 'Nutraceuticals',
+            epli: 'Employment Practices Liability Insurance',
+            erisa: 'Employee Retirement Income Security Act',
+            gdpr: 'General Data Protection Regulation',
+            dmca: 'Digital Millennium Copyright Act',
+            cpsia: 'Consumer Product Safety Improvement Act',
+            cpsc: 'Consumer Product Safety Commission',
+            p&c: 'Property and Casualty',
+            bi: 'Business Interruption',
+            gl: 'General Liability',
+            wc: 'Workers\' Compensation',
+            eil: 'Environmental Impairment Liability',
+            saas: 'Software as a Service',
+            iot: 'Internet of Things',
+            isp: 'Internet Service Provider',
+            ugc: 'User-Generated Content',
+            var: 'Value Added Reseller',
+            hipaa: 'Health Insurance Portability and Accountability Act',
+            hmo: 'Health Maintenance Organization',
+            ppo: 'Preferred Provider Organization',
+            ehr: 'Electronic Health Records',
+            gp: 'General Practice',
+            ah: 'Allied Health'
+        };
+
+        let category = 'Nothing found';
+        let foundKeywords = [];
+
+        for (let key in keywords) {
+            keywords[key].forEach(keyword => {
+                if (subject.includes(keyword)) {
+                    category = key;
+                    foundKeywords.push(keyword);
                 }
+            });
+        }
 
+        // Check for abbreviations and add full form in brackets
+        for (let abbr in abbreviations) {
+            if (subject.includes(abbr)) {
+                foundKeywords.push(`${abbr.toUpperCase()} (${abbreviations[abbr]})`);
+            }
+        }
+
+        // Handle closest matches for misspellings
+        const options = {
+            includeScore: true,
+            threshold: 0.3,
+            keys: ['keywords']
+        };
+
+        const fuse = new Fuse(Object.entries(keywords).map(([category, keywords]) => ({ category, keywords: keywords.join(' ') })), options);
+        const result = fuse.search(subject);
+        if (result.length > 0 && foundKeywords.length === 0) {
+            category = result[0].item.category;
+            foundKeywords.push(result[0].item.keywords.split(' ')[0]); // Taking the first match
+        }
                 analyzeResult.innerHTML = `Category: ${category}<br>Keywords Found: ${foundKeywords.length > 0 ? foundKeywords.join(', ') : 'None'}`;
             });
         });
