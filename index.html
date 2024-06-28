@@ -162,45 +162,37 @@
                 let foundCategories = new Set();
                 let foundKeywords = new Set();
 
-                // Split subject into words and multi-word phrases
-                let words = subject.split(/\W+/);
-
-                // Check for abbreviations and add full form in brackets
+                // Create a combined list of keywords and abbreviations for fuzzy searching
+                const combinedKeywords = [];
+                for (let category in keywords) {
+                    combinedKeywords.push(...keywords[category].map(word => ({ word, category })));
+                }
                 for (let abbr in abbreviations) {
-                    let abbrRegex = new RegExp(`\\b${abbr.replace(/&/g, '')}\\b`, 'gi');
-                    if (abbrRegex.test(subject)) {
-                        foundKeywords.add(`${abbr.toUpperCase()} (${abbreviations[abbr]})`);
-                        // Identify the category of the abbreviation
-                        for (let key in keywords) {
-                            if (keywords[key].includes(abbr) || keywords[key].includes(abbreviations[abbr])) {
-                                foundCategories.add(key);
-                            }
+                    combinedKeywords.push({ word: abbr, category: null });
+                }
+
+                // Fuse.js options for fuzzy matching
+                const fuseOptions = {
+                    keys: ['word'],
+                    threshold: 0.3, // Adjust this value to control the strictness of the match
+                };
+
+                const fuse = new Fuse(combinedKeywords, fuseOptions);
+
+                // Normalize and split subject into words
+                let words = subject.split(/\s+/);
+
+                // Check each word using Fuse.js
+                words.forEach(word => {
+                    let result = fuse.search(word);
+                    if (result.length > 0) {
+                        let bestMatch = result[0].item;
+                        foundKeywords.add(bestMatch.word);
+                        if (bestMatch.category) {
+                            foundCategories.add(bestMatch.category);
                         }
                     }
-                }
-
-                // Check for keywords
-                for (let key in keywords) {
-                    keywords[key].forEach(keyword => {
-                        let keywordWords = keyword.split(' ');
-                        if (keywordWords.length > 1) {
-                            // Check for multi-word keywords
-                            let keywordRegex = new RegExp(`\\b${keywordWords.join('\\b.*\\b')}\\b`, 'gi');
-                            if (keywordRegex.test(subject)) {
-                                foundKeywords.add(keyword);
-                                foundCategories.add(key);
-                            }
-                        } else {
-                            // Check for single-word keywords
-                            words.forEach(word => {
-                                if (word === keyword.toLowerCase()) {
-                                    foundKeywords.add(keyword);
-                                    foundCategories.add(key);
-                                }
-                            });
-                        }
-                    });
-                }
+                });
 
                 // Convert sets to arrays and remove duplicates of acronyms and full forms
                 let uniqueKeywords = Array.from(foundKeywords);
